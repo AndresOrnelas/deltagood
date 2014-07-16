@@ -1,0 +1,19 @@
+angular.module('AngularRails', [
+        'ngRoute',
+        'templates'
+    ]).config(function ($routeProvider, $locationProvider) {
+        $routeProvider
+            .when('/', {
+                templateUrl: 'home.html',
+                controller: 'HomeCtrl'
+            });
+            $routeProvider
+            .when('/users', {
+                templateUrl: '../views/users/hello.html',
+                controller: 'HomeCtrl'
+            });
+
+
+
+        $locationProvider.html5Mode(true);
+    });

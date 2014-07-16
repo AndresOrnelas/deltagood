@@ -1,0 +1,26 @@
+<div ng-controller="UserCtrl">
+<h1>User</h1>
+<ul>
+    <li ng-repeat="thing in things">
+        {{thing}}
+    </li>
+</ul>
+
+<form name="reviewForm">
+  <blockquote>
+    <b>Stars: {{review.stars}} </b>
+    {{review.body}}
+    <cite>by: {{review.author}} </cite>
+  </blockquote>
+  <select ng-model="review.stars" required>
+    <option value="1">1 star</option>
+    <option value="2">2 stars</option>
+  </select>
+  <textarea ng-model="review.body" required></textarea>
+  <label>by:</label>
+  <input ng-model="review.author" type="email" required/>
+  <input type="submit" value="Submit" />
+
+  
+</form>
+</div>
