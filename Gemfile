@@ -41,6 +41,10 @@ gem 'better_errors'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+gem 'bootstrap-will_paginate', '0.0.9'
+gem 'bootstrap-sass', '2.3.2.0'
+gem 'binding_of_caller'
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
 gem 'tzinfo'

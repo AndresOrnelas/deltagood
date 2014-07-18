@@ -1,19 +1,18 @@
-angular.module('AngularRails', [
+var myApp = angular.module('AngularRails', [
         'ngRoute',
         'templates'
-    ]).config(function ($routeProvider, $locationProvider) {
+    ]);
+
+myApp.config(function ($routeProvider, $locationProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: 'home.html',
+                templateUrl: 'test.html',
                 controller: 'HomeCtrl'
             });
             $routeProvider
-            .when('/users', {
-                templateUrl: '../views/users/hello.html',
-                controller: 'HomeCtrl'
-            });
-
-
-
+            .when('/tim', {
+                templateURL: 'templates/tim.html',
+                controller: 'HomeCtrl'});
+          
         $locationProvider.html5Mode(true);
     });

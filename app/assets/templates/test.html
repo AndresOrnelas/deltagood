@@ -1,0 +1,32 @@
+<div>
+<h1>I am wrong</h1>
+<ul>
+    <!-- <li ng-repeat="thing in things">
+        {{thing}}
+    </li> -->
+    {{test}}
+</ul>
+
+<h1>Post</h1>
+<ul>
+    <!-- <li ng-repeat="thing in things">
+        {{thing}}
+    </li> -->
+    {{post}}
+</ul>
+
+<form ng-submit="submit()" ng-controller="HomeCtrl">
+  Enter text and hit enter:
+  <input type="text" ng-model="formData.newPostText" name="text" />
+  <input type="submit" id="submit" value="Submit" />
+  <pre>list={{list}}</pre>
+</form>
+
+<form ng-submit="addNew()">
+  <input type="text" ng-model="todotxt">
+  <button type="submit">Add Todo</button>
+</form>
+
+<a ng-href="#/tim">Hello</a>
+
+</div>

@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :dashboard
+  resources :home
   root to: "home#index"
 
-  get '/dashboard' => 'application#index'
+  # get '/dashboard' => 'application#index'
   get '/test' => 'application#test'
   post '/todos' => 'application#create'
   get '/todos' => 'application#post'
