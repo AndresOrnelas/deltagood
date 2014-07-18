@@ -5,8 +5,10 @@ Rails.application.routes.draw do
 
   get '/dashboard' => 'application#index'
   get '/test' => 'application#test'
-  get '*path' => 'application#index'
   post '/todos' => 'application#create'
+  get '/todos' => 'application#post'
+  get '*path' => 'application#index'
+  
   # maybe dashboard
 
   # The priority is based upon order of creation: first created -> highest priority.

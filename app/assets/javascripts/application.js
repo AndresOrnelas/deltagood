@@ -17,3 +17,9 @@
 //= require angular-rails-templates
 //= require_tree ../templates
 //= require_tree .
+
+AngularRails.config([
+  "$httpProvider", function(provider) {
+    return provider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
+  }
+]);

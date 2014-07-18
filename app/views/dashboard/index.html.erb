@@ -1,10 +1,18 @@
 <div ng-controller="HomeCtrl">
 <h1>User</h1>
 <ul>
-    <li ng-repeat="thing in things">
+    <!-- <li ng-repeat="thing in things">
         {{thing}}
-    </li>
+    </li> -->
     {{test}}
+</ul>
+
+<h1>Post</h1>
+<ul>
+    <!-- <li ng-repeat="thing in things">
+        {{thing}}
+    </li> -->
+    {{post}}
 </ul>
 
 <form ng-submit="submit()" ng-controller="HomeCtrl">
@@ -14,7 +22,7 @@
   <pre>list={{list}}</pre>
 </form>
 
-<form ng-submit="addNew()">
+<form ng-click="addNew()">
 	<input type="text" ng-model="todotxt">
 	<button type="submit">Add Todo</button>
 </form>

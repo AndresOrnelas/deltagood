@@ -1,11 +1,23 @@
 var myApp = angular.module('AngularRails', []);
 
+myApp.config([
+  "$httpProvider", function(provider) {
+    return provider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
+  }
+]);
+
 myApp.controller('HomeCtrl', function ($scope, $http) {
         $scope.things = ['Angular', 'Rails 4.1', 'Working', 'Together!!', 'Sara'];
         console.log("test!");
         
         $http.get('/test.json').success(function(data){
         	$scope.test = data;
+        	console.log("success!");
+        	console.log(data);
+        });
+
+        $http.get('/todos.json').success(function(data){
+        	$scope.post = data;
         	console.log("success!");
         	console.log(data);
         });
@@ -19,19 +31,21 @@ myApp.controller('HomeCtrl', function ($scope, $http) {
         }
       };
 
-      $http.get('todos').success(function(todos){
-      	$scope.todos = todos;
-      });
+      // $scope.todos = [];
+
+      // $http.get('todos').success(function(todos){
+      // 	$scope.todos = todos;
+      // });
 
       $scope.addNew = function(){
 
-      	console.log('add new todo'); 
+      	console.log('add new todo');
       	var todo = {
       		text: $scope.todotxt,
       		done: false
-      	}
-      	$scope.todos.push(todo);
-      	$http.post('/todos',todo);
+      	};
+      	// $scope.todos.push(todo);
+      	$http.post('/todos.json',{});
 
       }
       console.log($scope.todos);
