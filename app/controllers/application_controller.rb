@@ -13,8 +13,10 @@ class ApplicationController < ActionController::Base
   end
 
   def create
+    puts params[:text]
     # Create and save new post from data received from the client
-    new_post = Post.create
+    new_post = Post.create(text: params[:text])
+    # new_post.text = params[:new_post][:title]
     # new_post.title = params[:new_post][:title][0...250] # Get only first 250 characters
     # new_post.contents = params[:new_post][:contents]
 

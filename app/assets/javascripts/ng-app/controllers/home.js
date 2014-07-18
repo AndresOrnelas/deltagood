@@ -31,11 +31,8 @@ myApp.controller('HomeCtrl', function ($scope, $http) {
         }
       };
 
-      // $scope.todos = [];
-
-      // $http.get('todos').success(function(todos){
-      // 	$scope.todos = todos;
-      // });
+   // Trying to generate and save the thing
+   
 
       $scope.addNew = function(){
 
@@ -45,13 +42,9 @@ myApp.controller('HomeCtrl', function ($scope, $http) {
       		done: false
       	};
       	// $scope.todos.push(todo);
-      	$http.post('/todos.json',{});
+      	$http.post('/todos.json',todo);
+      	// console.log(todo.text)
 
       }
-      console.log($scope.todos);
 
     });
-
-// angular.module('AngularRails').controller('UserCtrl', function ($scope) {
-//         $scope.things = ['Angular', 'Rails 4.1', 'Working', 'Together!!'];
-//     });
