@@ -22,29 +22,26 @@ myApp.controller('HomeCtrl', function ($scope, $location, $http) {
         	console.log(data);
         });
 
-      $scope.list = [];
-      $scope.text = 'hello';
-      $scope.submit = function() {
-        if ($scope.text) {
-          $scope.list.push(this.text);
-          $scope.text = '';
-        }
-      };
 
    // Trying to generate and save the thing
    
 
       $scope.addNew = function(){
-
       	console.log('add new todo');
       	var todo = {
       		text: $scope.todotxt,
       		done: false
       	};
+
       	// $scope.todos.push(todo);
       	$http.post('/todos.json',todo);
       	// console.log(todo.text)
-
+        
+$http.get('/todos.json').success(function(data){
+          $scope.post = data;
+          console.log("success!");
+          console.log(data);
+        });
       }
 
     });
