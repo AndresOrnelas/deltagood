@@ -11,7 +11,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140716193227) do
+ActiveRecord::Schema.define(version: 20140718135356) do
+
+  create_table "protocols", force: true do |t|
+    t.string   "name"
+    t.integer  "counter"
+    t.text     "steps"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "runs", force: true do |t|
+    t.integer  "counter"
+    t.text     "inputs"
+    t.text     "times"
+    t.text     "changeList"
+    t.integer  "user_id"
+    t.integer  "protocol_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "solutions", force: true do |t|
+    t.boolean  "bought"
+    t.integer  "user_id"
+    t.float    "quantity"
+    t.string   "name"
+    t.integer  "lot"
+    t.float    "concentration"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "name"
