@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
-   root 'application#index'
-    get '/test' => 'application#test'
-    get '*path' => 'application#index'
+  devise_for :users
+  resources :dashboard
+  root to: "home#index"
+
+  get '/dashboard' => 'application#index'
+  get '/test' => 'application#test'
+  get '*path' => 'application#index'
+  post '/todos' => 'application#create'
+  # maybe dashboard
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,0 +1,22 @@
+<div ng-controller="HomeCtrl">
+<h1>User</h1>
+<ul>
+    <li ng-repeat="thing in things">
+        {{thing}}
+    </li>
+    {{test}}
+</ul>
+
+<form ng-submit="submit()" ng-controller="HomeCtrl">
+  Enter text and hit enter:
+  <input type="text" ng-model="text" name="text" />
+  <input type="submit" id="submit" value="Submit" />
+  <pre>list={{list}}</pre>
+</form>
+
+<form ng-submit="addNew()">
+	<input type="text" ng-model="todotxt">
+	<button type="submit">Add Todo</button>
+</form>
+
+</div>
