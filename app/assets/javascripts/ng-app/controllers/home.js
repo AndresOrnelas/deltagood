@@ -4,7 +4,7 @@ myApp.config([
   }
 ]);
 
-myApp.controller('HomeCtrl', function ($scope, $http) {
+myApp.controller('HomeCtrl', function ($scope, $location, $http) {
         $scope.things = ['Angular', 'Rails 4.1', 'Working', 'Together!!', 'Sara'];
         console.log("test!");
         
@@ -13,7 +13,9 @@ myApp.controller('HomeCtrl', function ($scope, $http) {
         	console.log("success!");
         	console.log(data);
         });
-
+        $scope.viewMe = function(){
+          $location.url('/tim')
+        }
         $http.get('/todos.json').success(function(data){
         	$scope.post = data;
         	console.log("success!");

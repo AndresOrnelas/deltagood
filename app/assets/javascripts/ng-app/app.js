@@ -9,10 +9,15 @@ myApp.config(function ($routeProvider, $locationProvider) {
                 templateUrl: 'test.html',
                 controller: 'HomeCtrl'
             });
+            // $routeProvider
+            // .when('/tim', {
+            //     templateURL: 'templates/tim.html',
+            //     controller: 'HomeCtrl'});
             $routeProvider
             .when('/tim', {
-                templateURL: 'templates/tim.html',
-                controller: 'HomeCtrl'});
+                templateUrl: 'tim.html',
+                controller: 'HomeCtrl'
+            });
           
         $locationProvider.html5Mode(true);
     });
