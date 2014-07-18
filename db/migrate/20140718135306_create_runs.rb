@@ -7,6 +7,7 @@ class CreateRuns < ActiveRecord::Migration
       t.text :changeList
       t.belongs_to :user
       t.belongs_to :protocol
+      t.integer :currentStep
 
       t.timestamps
     end
