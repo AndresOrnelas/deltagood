@@ -10,9 +10,9 @@ myApp.controller('HomeCtrl', function ($scope, $http, $location) {
         	console.log(data);
         });
 
-        $scope.viewMe = function(){ 
-          $location.url('/tim') 
-        };
+        $scope.viewMe = function(){
+          $location.url('/tim')
+        }
 
         $http.get('/todos.json').success(function(data){
         	$scope.post = data;
@@ -20,29 +20,31 @@ myApp.controller('HomeCtrl', function ($scope, $http, $location) {
         	console.log(data);
         });
 
-      $scope.list = [];
-      $scope.text = 'hello';
-      $scope.submit = function() {
-        if ($scope.text) {
-          $scope.list.push(this.text);
-          $scope.text = '';
-        }
-      };
 
    // Trying to generate and save the thing
    
 
       $scope.addNew = function(){
-
       	console.log('add new todo');
       	var todo = {
       		text: $scope.todotxt,
       		done: false
       	};
+
       	// $scope.todos.push(todo);
       	$http.post('/todos.json',todo);
       	// console.log(todo.text)
+<<<<<<< HEAD
 
       };
+=======
+        
+$http.get('/todos.json').success(function(data){
+          $scope.post = data;
+          console.log("success!");
+          console.log(data);
+        });
+      }
+>>>>>>> 48b20eac15591a8233e9a249c3ceaf2bd6d524d4
 
     });

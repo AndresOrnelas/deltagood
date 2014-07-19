@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get '/test' => 'application#test'
   post '/todos' => 'application#create'
   get '/todos' => 'application#post'
-  get '*path' => 'application#index'
+  get '*path' => 'users#index'
   
   # maybe dashboard
 

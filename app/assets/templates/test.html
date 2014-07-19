@@ -14,12 +14,7 @@
     </li>
 </ul>
 
-<form ng-submit="submit()" ng-controller="HomeCtrl">
-  Enter text and hit enter:
-  <input type="text" ng-model="formData.newPostText" name="text" />
-  <input type="submit" id="submit" value="Submit" />
-  <pre>list={{list}}</pre>
-</form>
+
 
 <form ng-submit="addNew()">
   <input type="text" ng-model="todotxt">
@@ -31,5 +26,3 @@
 <div ng-show='showFlag'>ON</div>
 
 <div ng-hide='showFlag'>OFF</div>
-
-</div>
