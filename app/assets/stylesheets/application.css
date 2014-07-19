@@ -150,20 +150,31 @@
     z-index: 100;
     -webkit-transform: translateX(-100%);
     transform: translateX(-100%);
+    opacity:0;
+    transition:1s;
+    
 }
 
 .slide-right.ng-enter.ng-enter-active {
     -webkit-transform: translateX(0);
     transform: translateX(0);
+    opacity:1;
+    transition:1s;
+
 }
 
 .slide-right.ng-leave {
     z-index: 101;
+    transition:1s;
     -webkit-transform: translateX(0);
     transform: translateX(0);
+    opacity:0;
 }
 
 .slide-right.ng-leave.ng-leave-active {
     -webkit-transform: translateX(100%);
     transform: translateX(100%);
+    opacity:1;
+    transition:1s;
+
 }

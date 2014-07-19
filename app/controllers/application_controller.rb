@@ -17,7 +17,12 @@ class ApplicationController < ActionController::Base
   end
 
   def run
-    respond_with Protocol.first.runs
+    # make params more specific
+    # puts params[:name]
+    # a = params[:name].to_s
+    # puts "hello world"
+    # puts Run.where(protocol_id: Protocol.find_by(name: 'B').id)
+    respond_with Run.all
   end
 
   def user

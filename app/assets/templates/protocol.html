@@ -15,7 +15,7 @@
             	Last Update
             </td>
         </tr>
-        <tr ng-show = "protocols[run.protocol_id-1].name === locate" ng-click="visit('/'+ protocols[run.protocol_id-1].name +'/'+ run.id)" ng-repeat="run in runs">
+        <tr ng-show = "protocols[run.protocol_id-1].name === locate" ng-click="visit('/'+ locate +'/'+ run.counter)" ng-repeat="run in runs">
         	<td > {{run.counter}} </td>
         	<td> {{users[run.user_id-1].name}} </td>
         	<td> 0% </td>
