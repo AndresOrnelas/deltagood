@@ -1,0 +1,25 @@
+<h1> Runs </h1>
+<div class="tbl" >
+    <table >
+        <tr>
+            <td>
+                Runs
+            </td>
+            <td >
+                Person
+            </td>
+            <td>
+                % Complete
+            </td>
+            <td>
+            	Last Update
+            </td>
+        </tr>
+        <tr ng-show = "protocols[run.protocol_id-1].name === locate" ng-click="visit('/'+ protocols[run.protocol_id-1].name +'/'+ run.id)" ng-repeat="run in runs">
+        	<td > {{run.counter}} </td>
+        	<td> {{users[run.user_id-1].name}} </td>
+        	<td> 0% </td>
+        	<td> {{run.updated_at | date}}
+        </tr>
+    </table>
+</div>

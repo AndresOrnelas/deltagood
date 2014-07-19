@@ -14,10 +14,14 @@ myApp.config(function ($routeProvider, $locationProvider) {
             //     templateURL: 'templates/tim.html',
             //     controller: 'HomeCtrl'});
             $routeProvider
-            .when('/tim', {
-                templateUrl: 'tim.html',
-                controller: 'UserCtrl'
+            .when('/:protocol', {
+                templateUrl: 'protocol.html',
+                controller: 'RunCtrl'
             });
-          
+            $routeProvider
+            .when('/:protocol/:run', {
+                templateUrl: 'steps.html',
+                controller: 'StepCtrl'
+            });
         $locationProvider.html5Mode(true);
     });

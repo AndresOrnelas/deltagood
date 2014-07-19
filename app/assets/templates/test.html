@@ -1,18 +1,17 @@
 <div>
-<h1>I am wrong</h1>
-<ul>
-    <!-- <li ng-repeat="thing in things">
-        {{thing}}
-    </li> -->
-    {{test}}
-</ul>
+<h1>Protocols</h1>
+    <div style="border-style: solid; display: block-inline" ng-click="visit('/'+ t.name)" ng-repeat="t in test" >
+      <img src= "http://digital-photography-school.com/wp-content/uploads/2013/03/Acorn256.png">
+
+        Name: {{t.name}} <br>
+        Steps: {{t.steps}}
+    </div>
 
 <h1>Post</h1>
 <ul>
-    <!-- <li ng-repeat="thing in things">
-        {{thing}}
-    </li> -->
-    {{post}}
+    <li ng-repeat="po in post">
+      {{po.text}}
+    </li>
 </ul>
 
 

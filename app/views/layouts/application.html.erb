@@ -5,13 +5,15 @@
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application', controller_name %>
   <%= csrf_meta_tags %>
+      <script src="lib/angular-animate.js"></script>
+
 </head>
 <body>
   <%= render 'layouts/header' %>
   <div id="user_nav">
     <% if user_signed_in? %>	
-      Signed in as <%= current_user.email %>. Not you?  
-      <%= link_to "   Sign out", destroy_user_session_path, :method => :delete %>
+     <!--  Signed in as <%= current_user.email %>. Not you?  
+      <%= link_to "   Sign out", destroy_user_session_path, :method => :delete %> -->
       <div ng-app = 'AngularRails'>
         <%= yield %>
       </div>

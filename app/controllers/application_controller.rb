@@ -12,6 +12,18 @@ class ApplicationController < ActionController::Base
   	respond_with User.all
   end
 
+  def protocol
+    respond_with Protocol.all
+  end
+
+  def run
+    respond_with Protocol.first.runs
+  end
+
+  def user
+    respond_with User.all
+  end
+
   def create
     puts params[:text]
     # Create and save new post from data received from the client
