@@ -16,7 +16,7 @@ myApp.config(function ($routeProvider, $locationProvider) {
             $routeProvider
             .when('/tim', {
                 templateUrl: 'tim.html',
-                controller: 'HomeCtrl'
+                controller: 'UserCtrl'
             });
           
         $locationProvider.html5Mode(true);
