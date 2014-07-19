@@ -11,6 +11,9 @@ class ApplicationController < ActionController::Base
   def test
   	respond_with User.all
   end
+  def protocoltype
+    respond_with Protocol.find_by(name: "A")
+  end
 
   def protocol
     respond_with Protocol.all

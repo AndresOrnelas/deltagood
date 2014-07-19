@@ -11,13 +11,23 @@ myApp.controller('HomeCtrl', function ($scope, $location, $http) {
           $location.url(data)    
           }
         $http.get('/protocol.json').success(function(data){
-        	$scope.test = data;
+        	$scope.protocols = data;
 
         });
+
+        //Activated when we want to see Run History
         $scope.visit = function(data){
           $scope.slide = 'slide-right';
           $location.url(data)
         }
+
+        //Activated when we start a Run
+        $scope.start = function(data){
+          $scope.slide = 'slide-right';
+          $location.url(data)
+        }
+
+
         $http.get('/posts.json').success(function(data){
         	$scope.post = data;
         });

@@ -9,6 +9,16 @@ myApp.config(function ($routeProvider, $locationProvider) {
                 templateUrl: 'test.html',
                 controller: 'HomeCtrl'
             });
+            $routeProvider
+            .when('/newrun/:protocol', {
+                templateUrl: 'newrun.html',
+                controller: 'NewRunCtrl'
+            });
+            $routeProvider
+            .when('/newrun/:protocol/:steps', {
+                templateUrl: 'prepare.html',
+                controller: 'NewRunCtrl'
+            });
             // $routeProvider
             // .when('/tim', {
             //     templateURL: 'templates/tim.html',
@@ -20,8 +30,16 @@ myApp.config(function ($routeProvider, $locationProvider) {
             });
             $routeProvider
             .when('/:protocol/:run', {
-                templateUrl: 'steps.html',
-                controller: 'StepCtrl'
+                templateUrl: 'runstats.html',
+                controller: 'RunStatsCtrl'
             });
+            
+            $routeProvider
+            .otherwise('/', {
+                templateUrl: 'test.html',
+                controller: 'HomeCtrl'
+            });
+
+
         $locationProvider.html5Mode(true);
     });
