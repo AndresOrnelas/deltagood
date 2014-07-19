@@ -9,10 +9,9 @@
 
 <h1>Post</h1>
 <ul>
-    <!-- <li ng-repeat="thing in things">
+    <li ng-repeat="thing in things">
         {{thing}}
-    </li> -->
-    {{post}}
+    </li>
 </ul>
 
 <form ng-submit="submit()" ng-controller="HomeCtrl">
@@ -27,6 +26,10 @@
   <button type="submit">Add Todo</button>
 </form>
 
-<a ng-href="#/tim">Hello</a>
+<a ng-click='viewMe()'>Hello</a>
+
+<div ng-show='showFlag'>ON</div>
+
+<div ng-hide='showFlag'>OFF</div>
 
 </div>

@@ -1,6 +1,7 @@
 var myApp = angular.module('AngularRails', [
         'ngRoute',
-        'templates'
+        'templates',
+        'ngTouch'
     ]);
 
 myApp.config(function ($routeProvider, $locationProvider) {
@@ -16,3 +17,9 @@ myApp.config(function ($routeProvider, $locationProvider) {
           
         $locationProvider.html5Mode(true);
     });
+
+myApp.config([
+  "$httpProvider", function(provider) {
+    return provider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
+  }
+]);

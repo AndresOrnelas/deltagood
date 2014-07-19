@@ -1,4 +1,3 @@
-angular.module('AngularRails')
-    .controller('UserCtrl', function ($scope) {
+myApp.controller('UserCtrl', function ($scope) {
         $scope.things = ['Angular', 'Rails 4.1', 'Working', 'Together!!'];
     });
