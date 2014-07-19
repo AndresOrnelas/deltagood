@@ -1,3 +1,5 @@
+An app to bring the scientific method to cooking- with each time through a recipe, you can hone in on perfection.
+
 == README
 
 This README would normally document whatever steps are necessary to get the
