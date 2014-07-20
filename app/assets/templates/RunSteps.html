@@ -1,23 +1,28 @@
-<div ng-init = "counter = 0">
+<!-- <div ng-init = "showAction = false"> -->
+<div style="height: 400px" ng-init = "counter = 0">
+	<div ng-swipe-left="addCounter()" ng-switch on="protocols.steps[counter].type">
 
-	<div ng-show = "protocols.steps[counter].type === 'prepare'" ng-include = "'prepare.html'">
+		<div ng-class= "slide" style = "width: 100%; " ng-switch-when="prepare">
+		<h1> fjklsdflkj </h1>
+		</div>
+
+		<div ng-class= "slide" style = "width: 100%;" ng-switch-when="pipet"> 
+			<h1> Pipet </h1>
+			{{protocols.steps[counter].name}}
+			{{values}}
+		</div>
+
+		<div ng-class= "slide" style = "width: 100%;" ng-switch-when="incubation"> 
+		<!-- <div ng-show="showAction === false" style = "background-color: blue"ng-swipe-left= "showAction = true"> -->
+			<h1> Incubation </h1> 
+		</div>
+
+		<div ng-switch-when="mechanical"> 
+		<!-- <div ng-show="showAction === true" ng-swipe-right= "showAction = false"> -->
+			Mechanical 
+		</div>
 	</div>
-
-	<div ng-show = "protocols.steps[counter].type === 'pipet'"> 
-		<h1> Pipet </h1>
-		{{protocols.steps[counter].name}}
-		{{values}}
-	</div>
-
-	<div ng-show = "protocols.steps[counter].type === 'incubation'"> 
-		Incubation 
-	</div>
-
-	<div ng-show = "protocols.steps[counter].type === 'mechanical'"> 
-		Mechanical 
-	</div>
-	<button   ng-click = "nextStep()"> Next Step </button>
-	<button   ng-click = "addNew()"> Add Run </button>
-
-
 </div>
+	<button ng-click= "nextStep()"> Next Step </button>
+	<button ng-click = "lastStep()"> Last Step </button>
+	<button   ng-click = "addNew()"> Add Run </button>

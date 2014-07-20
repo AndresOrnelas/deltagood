@@ -1,6 +1,8 @@
 var myApp = angular.module('AngularRails', [
         'ngRoute',
-        'templates'
+        'templates',
+        'ngTouch',
+        'ngAnimate'
     ]);
 
 myApp.config(function ($routeProvider, $locationProvider) {

@@ -17,7 +17,7 @@ myApp.controller('HomeCtrl', function ($scope, $location, $http) {
 
         //Activated when we want to see Run History
         $scope.visit = function(data){
-          $scope.slide = 'slide-right';
+          $scope.slide = 'slide-left';
           $location.url(data)
         }
 
