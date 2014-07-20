@@ -1,21 +1,18 @@
 myApp.controller('NewRunCtrl', function ($scope, $location,  $http) {
-      //HARD CODED FIX THIS
+      
       $scope.slide = 'slide-left'
-      // if($scope.slide === 'slide-left'){
-      // 	$scope.slide = 'slide-left'
-      // }
-      // if($scope.slide === 'slide-right'){
-      // 	$scope.slide - 'slide-right'
-      // }
       $scope.count = $scope.counter;
       $scope.imgcounter = 0;
-       $scope.values = [];
+      $scope.values = [];
+      $scope.imagelength = 0;
+
+      //HARD CODED FIX THIS
       $http.get('/protocoltype.json').success(function(data){
         	$scope.protocols = data;
      		 $scope.numsteps = $scope.protocols.steps.length;
      		 $scope.imagelinks = $scope.protocols.steps[$scope.counter].images;
      		 $scope.imglink = $scope.imagelinks[$scope.imgcounter];
-
+     		 $scope.imagelength = $scope.imagelinks.length;
         });
       $scope.nextStep = function(){
       	if($scope.counter !== $scope.numsteps-1){
@@ -35,12 +32,16 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http) {
 
       }
       $scope.imgMove = function(){
-      	$scope.imgcounter = $scope.imgcounter + 1;
-      	$scope.imglink=$scope.imagelinks[$scope.imgcounter];
+      	if($scope.imgcounter != $scope.imagelength-1){
+	      	$scope.imgcounter = $scope.imgcounter + 1;
+	      	$scope.imglink=$scope.imagelinks[$scope.imgcounter];
+     	 }
       }
       $scope.imgBack = function(){
-      	$scope.imgcounter = $scope.imgcounter - 1;
-      	$scope.imglink=$scope.imagelinks[$scope.imgcounter];
+      	if($scope.imgcounter != 0){
+	      	$scope.imgcounter = $scope.imgcounter - 1;
+	      	$scope.imglink=$scope.imagelinks[$scope.imgcounter];
+     	 }
       }
 
       $scope.lastStep = function(){
