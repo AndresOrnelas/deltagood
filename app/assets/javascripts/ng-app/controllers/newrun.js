@@ -8,10 +8,13 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http) {
       // 	$scope.slide - 'slide-right'
       // }
       $scope.count = $scope.counter;
+      $scope.imgcounter = 0;
        $scope.values = [];
       $http.get('/protocoltype.json').success(function(data){
         	$scope.protocols = data;
      		 $scope.numsteps = $scope.protocols.steps.length;
+     		 $scope.imagelinks = $scope.protocols.steps[$scope.counter].images;
+     		 $scope.imglink = $scope.imagelinks[$scope.imgcounter];
 
         });
       $scope.nextStep = function(){
@@ -31,6 +34,15 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http) {
       		}
 
       }
+      $scope.imgMove = function(){
+      	$scope.imgcounter = $scope.imgcounter + 1;
+      	$scope.imglink=$scope.imagelinks[$scope.imgcounter];
+      }
+      $scope.imgBack = function(){
+      	$scope.imgcounter = $scope.imgcounter - 1;
+      	$scope.imglink=$scope.imagelinks[$scope.imgcounter];
+      }
+
       $scope.lastStep = function(){
       	if($scope.counter !== 0){
    		 	$scope.slide = 'slide-right';
@@ -44,8 +56,10 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http) {
 
     $scope.addNew = function(){
   	$http.post('/run.json',$scope.values); 
+    $scope.slide = 'slide-right';
+  	$location.url('/')  
     $scope.slide = 'slide-left';
-  	$location.url('/')       
+
     // $http.get('/runs.json').success(function(data){
     //   $scope.runs = data;
     // });

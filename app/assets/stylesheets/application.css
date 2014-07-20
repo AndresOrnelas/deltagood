@@ -13,9 +13,25 @@
  *= require_tree .
  *= require_self
  */
+#headsty{
+ 	margin:0px;
+ }
  .box{
  	border-style: solid;
  	padding: 10px;
+ 	width: 75%;
+ 	text-align: center;
+ 	margin: 0 auto;
+ 	margin-top: 10px;
+ }
+ .mechanicalimgbox{
+ 	border-style: solid;
+ 	border-radius: 20px;
+ 	width: 50%;
+ 	padding: 10px;
+ 	text-align: center;
+ 	margin: 0 auto;
+ 	margin-top: 10px;
  }
 
  .box1:hover{
