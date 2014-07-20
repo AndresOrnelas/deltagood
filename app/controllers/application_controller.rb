@@ -27,6 +27,13 @@ class ApplicationController < ActionController::Base
     # puts Run.where(protocol_id: Protocol.find_by(name: 'B').id)
     respond_with Run.all
   end
+  def createrun
+    puts "henokhahahahahuaihgheiruhgiauehriguehriugh"
+    new_run = Run.create(protocol_id: 1, user_id: 1, inputs: params[:values])
+    respond_with(new_run) do |format|
+        format.json { render :json => new_run.as_json }
+      end
+  end
 
   def user
     respond_with User.all

@@ -1,0 +1,23 @@
+<div ng-init = "counter = 0">
+
+	<div ng-show = "protocols.steps[counter].type === 'prepare'" ng-include = "'prepare.html'">
+	</div>
+
+	<div ng-show = "protocols.steps[counter].type === 'pipet'"> 
+		<h1> Pipet </h1>
+		{{protocols.steps[counter].name}}
+		{{values}}
+	</div>
+
+	<div ng-show = "protocols.steps[counter].type === 'incubation'"> 
+		Incubation 
+	</div>
+
+	<div ng-show = "protocols.steps[counter].type === 'mechanical'"> 
+		Mechanical 
+	</div>
+	<button   ng-click = "nextStep()"> Next Step </button>
+	<button   ng-click = "addNew()"> Add Run </button>
+
+
+</div>

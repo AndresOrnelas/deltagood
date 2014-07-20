@@ -16,7 +16,7 @@ myApp.config(function ($routeProvider, $locationProvider) {
             });
             $routeProvider
             .when('/newrun/:protocol/:steps', {
-                templateUrl: 'prepare.html',
+                templateUrl: 'RunSteps.html',
                 controller: 'NewRunCtrl'
             });
             // $routeProvider

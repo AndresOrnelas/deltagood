@@ -15,6 +15,7 @@
  */
  .box{
  	border-style: solid;
+ 	padding: 10px;
  }
 
 .tbl {

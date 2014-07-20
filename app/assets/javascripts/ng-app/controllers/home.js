@@ -33,7 +33,6 @@ myApp.controller('HomeCtrl', function ($scope, $location, $http) {
         });
    // Trying to generate and save the thing
       $scope.addNew = function(){
-      	console.log('add new todo');
       	var todo = {
       		text: $scope.todotxt,
       		done: false

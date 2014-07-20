@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root to: "home#index"
 
   get '/user' => 'application#user'
-  post '/run' => 'application#run'
+  post '/run' => 'application#createrun'
   get '/run' => 'application#run'
   get '/protocol' => 'application#protocol'
   get '/protocoltype' => 'application#protocoltype'

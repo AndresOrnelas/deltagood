@@ -1,13 +1,13 @@
 <div>
 <h1>Protocols</h1>
-    <div style="border-style: solid; display: block-inline"  ng-repeat="protocol in protocols" >
+    <div class="box"  ng-repeat="protocol in protocols" >
       <img src= "http://digital-photography-school.com/wp-content/uploads/2013/03/Acorn256.png">
 
         Name: {{protocol.name}} <br>
         Steps: {{protocol.steps}}
 
-        <div ng-click= "start('/' +'newrun' + '/'+ protocol.name)" style="border-style: solid"> Start Run </div>
-        <div style="border-style: solid" ng-click="visit('/'+ protocol.name)"> Run History </div>
+        <div ng-click= "start('/' +'newrun' + '/'+ protocol.name)" class="box"> Start Run </div>
+        <div class="box" ng-click="visit('/'+ protocol.name)"> Run History </div>
     </div>
 
 </div>
