@@ -7,9 +7,10 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http) {
     $scope.values = [];
     $scope.imagelength = 0;
     $scope.disable = "";
+    $scope.locate = $location.path().substring(8,9);
 
     //HARD CODED FIX THIS
-    $http.get('/protocoltype.json').success(function(data){
+    $http.get('/protocoltype.json', { params: {name: $scope.locate}}).success(function(data){
         //General
         $scope.protocols = data;
      	$scope.numsteps = $scope.protocols.steps.length;

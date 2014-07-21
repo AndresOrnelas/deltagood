@@ -12,7 +12,10 @@ class ApplicationController < ActionController::Base
   	respond_with User.all
   end
   def protocoltype
-    respond_with Protocol.find_by(name: "A")
+    # This is still hardcoded. Correct it so that it loads with params.
+    # stuff = params[:]
+
+    respond_with Protocol.find_by(name: params[:name])
   end
 
   def protocol
