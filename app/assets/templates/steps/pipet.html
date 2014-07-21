@@ -1,0 +1,14 @@
+<h1> Pipet </h1>
+<h2> Procedure: Protocol {{protocols.name}} </h2>
+<h2> Step #{{counter+1}} </h2>
+
+<div class="box">{{protocols.steps[counter].name}}</div>
+
+<input id = "incubatortime" type = "text" placeholder = "{{protocols.steps[counter].volume}} microliters"> 
+
+<select>
+  <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="mercedes">Mercedes</option>
+  <option value="audi">Audi</option>
+</select>

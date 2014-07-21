@@ -11,6 +11,34 @@ class ApplicationController < ActionController::Base
   def test
   	respond_with User.all
   end
+  def protocoltype
+    respond_with Protocol.find_by(name: "A")
+  end
+
+  def protocol
+    respond_with Protocol.all
+  end
+
+  def run
+    # make params more specific
+    # puts params[:name]
+    # a = params[:name].to_s
+    # puts "hello world"
+    # puts Run.where(protocol_id: Protocol.find_by(name: 'B').id)
+    respond_with Run.all
+  end
+  def createrun
+    puts "hahah"
+    puts params[:_json]
+        new_run = Run.create(protocol_id: 1, user_id: 1, inputs: params[:_json])
+    respond_with(new_run) do |format|
+        format.json { render :json => new_run.as_json }
+      end
+  end
+
+  def user
+    respond_with User.all
+  end
 
   def create
     puts params[:text]

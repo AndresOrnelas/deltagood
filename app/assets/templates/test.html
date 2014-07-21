@@ -1,28 +1,28 @@
-<div>
-<h1>I am wrong</h1>
-<ul>
-    <!-- <li ng-repeat="thing in things">
-        {{thing}}
-    </li> -->
-    {{test}}
-</ul>
-
-<h1>Post</h1>
-<ul>
-    <li ng-repeat="thing in things">
-        {{thing}}
-    </li>
-</ul>
 
 
+<h1>Protocols</h1>
 
-<form ng-submit="addNew()">
-  <input type="text" ng-model="todotxt">
-  <button type="submit">Add Todo</button>
-</form>
+<!-- this bootstrap setup might get fucked up when we add more protocols... might need to change the container 
+setup to go with ng-repeat -->
+	<div class = "container" style = "background-color: #FF6699;">
+    <div class="row"  ng-repeat="protocol in protocols" >
 
-<a ng-click='viewMe()'>Hello</a>
 
-<div ng-show='showFlag'>ON</div>
+    	<div class="col-md-3" style = "background-color: #9900FF;">
+     		 <img src= "http://digital-photography-school.com/wp-content/uploads/2013/03/Acorn256.png">
+      	</div>
 
-<div ng-hide='showFlag'>OFF</div>
+		<div class="col-md-3">
+			<h3> Name: {{protocol.name}} </h3>
+		</div>
+
+		<div class="col-md-3">
+       		 <button ng-click= "visit('/' +'newrun' + '/'+ protocol.name)" class="btn btn-success btn-large btn-block"> Start Run 
+       	     </button>
+       	</div>
+
+       	<div class="col-md-3">
+        <button class="btn btn-warning btn-large" ng-click="visit('/'+ protocol.name)"> Run History </div>
+    </div>
+    </div>
+</div>

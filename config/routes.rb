@@ -3,11 +3,15 @@ Rails.application.routes.draw do
   resources :home
   root to: "home#index"
 
-  # get '/dashboard' => 'application#index'
+  get '/user' => 'application#user'
+  post '/run' => 'application#createrun'
+  get '/run' => 'application#run'
+  get '/protocol' => 'application#protocol'
+  get '/protocoltype' => 'application#protocoltype'
   get '/test' => 'application#test'
-  post '/todos' => 'application#create'
-  get '/todos' => 'application#post'
-  get '*path' => 'users#index'
+  post '/posts' => 'application#create'
+  get '/posts' => 'application#post'
+  get '*path' => 'application#index'
   
   # maybe dashboard
 

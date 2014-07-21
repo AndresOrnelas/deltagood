@@ -5,19 +5,23 @@
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application', controller_name %>
   <%= csrf_meta_tags %>
+<!-- <link href="app/assets/stylesheets/flipclock.css" rel="stylesheet" type="text/css"> -->
+
 </head>
 <body>
   <%= render 'layouts/header' %>
-  <%= render 'layouts/messages' %>
-  <div class ="container" id="user_nav">
+   <%= render 'layouts/messages' %>
+  <div id="user_nav">
     <% if user_signed_in? %>	
-      Signed in as <%= current_user.email %>. Not you?  
-      <%= link_to "   Sign out", destroy_user_session_path, :method => :delete %>
-      <div ng-app = 'AngularRails'>
+
+     <!--  Signed in as <%= current_user.email %>. Not you?  
+      <%= link_to "   Sign out", destroy_user_session_path, :method => :delete %> -->
+      <div style = "background-color: #7FDBFF;" ng-app = 'AngularRails'>
         <%= yield %>
       </div>
      <% else %>
-       <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "Sign in", new_user_session_path %>
+      <!--  <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "Sign in", new_user_session_path %> -->
+      
        <%= yield %>
      <% end %>
   </div>

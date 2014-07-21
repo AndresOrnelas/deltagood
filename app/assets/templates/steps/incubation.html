@@ -1,0 +1,16 @@
+<h1> Incubation </h1>
+<h2> Procedure: Protocol {{protocols.name}} </h2>
+<h2> Step #{{counter+1}} </h2>
+
+<div class="box">{{protocols.steps[counter].name}}</div>
+
+<div style="text-align: left; border: solid" class = "col-xs-6 col-sm-6 .col-lg-6">
+	<!-- <h1>Incubate for {{protocols.steps[counter].time}} minutes</h1> -->
+	<input id = "incubatortime" type = "text" placeholder = "{{protocols.steps[counter].time}} minutes" ng-model = "time"> 
+	<input id = "incubatortime" type = "text" placeholder = "{{protocols.steps[counter].temp}} Celsius degrees"> 
+	
+</div>
+
+<!-- Clock button with its associated div -->
+<button  ng-click = "clock(time)" > START TIMER</button>
+<div class = "clock"></div>
