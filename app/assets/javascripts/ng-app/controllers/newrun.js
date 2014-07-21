@@ -6,6 +6,7 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http) {
     $scope.imgcounter = 0;
     $scope.values = [];
     $scope.imagelength = 0;
+    $scope.disable = "";
 
     //HARD CODED FIX THIS
     $http.get('/protocoltype.json').success(function(data){
@@ -20,6 +21,7 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http) {
 
 	//Incubatation.html javascript
     $scope.clock = function(time){
+		document.getElementById("incubatortime").disabled = true;
     	return $('.clock').FlipClock(time *60, {
 			countdown: true
 		});
