@@ -1,28 +1,28 @@
-<div>
+
 <h1>Protocols</h1>
 
 <!-- this bootstrap setup might get fucked up when we add more protocols... might need to change the container 
 setup to go with ng-repeat -->
 	<div class = "container" style = "background-color: #FF6699;">
-    <!-- <div class="row"  ng-repeat="protocol in protocols" > -->
-    <div class="row">
+    <div class="row"  ng-repeat="protocol in protocols" >
 
-    	<div class="col-md-1" style = "background-color: #9900FF;">
+
+    	<div class="col-md-3" style = "background-color: #9900FF;">
      		 <img src= "http://digital-photography-school.com/wp-content/uploads/2013/03/Acorn256.png">
       	</div>
 
-		<div class="col-md-4">
+		<div class="col-md-3">
 			<h3> Name: {{protocol.name}} </h3>
 		</div>
 
-		<div class="col-md-4">
+		<div class="col-md-3">
        		 <button ng-click= "visit('/' +'newrun' + '/'+ protocol.name)" class="btn btn-success btn-large btn-block"> Start Run 
        	     </button>
        	</div>
-    </div>
-</div>
 
+       	<div class="col-md-3">
         <button class="btn btn-warning btn-large" ng-click="visit('/'+ protocol.name)"> Run History </div>
     </div>
-
+    </div>
 </div>
+
