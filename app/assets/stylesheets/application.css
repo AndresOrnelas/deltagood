@@ -24,6 +24,14 @@
  	margin: 0 auto;
  	margin-top: 10px;
  }
+ .timer{
+ 	border-style: solid;
+ 	margin-top: 20px;
+ 	display: inline;
+ 	width: 30%; 
+ 	float: right;
+ }
+
  .mechanicalimgbox{
  	border-style: solid;
  	border-radius: 20px;

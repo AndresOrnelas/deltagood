@@ -3,8 +3,7 @@
     <div class="box"  ng-repeat="protocol in protocols" >
       <img src= "http://digital-photography-school.com/wp-content/uploads/2013/03/Acorn256.png">
 
-        Name: {{protocol.name}} <br>
-        Steps: {{protocol.steps}}
+        Name: {{protocol.name}}
 
         <div ng-click= "visit('/' +'newrun' + '/'+ protocol.name)" class="box"> Start Run </div>
         <div class="box" ng-click="visit('/'+ protocol.name)"> Run History </div>
