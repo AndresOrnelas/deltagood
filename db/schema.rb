@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140718143139) do
+ActiveRecord::Schema.define(version: 20140721222124) do
 
   create_table "posts", force: true do |t|
     t.string   "text"
@@ -48,6 +48,8 @@ ActiveRecord::Schema.define(version: 20140718143139) do
     t.float    "concentration"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "expiration"
+    t.text     "reagents"
   end
 
   create_table "users", force: true do |t|

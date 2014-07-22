@@ -11,8 +11,14 @@ Rails.application.routes.draw do
   get '/test' => 'application#test'
   post '/posts' => 'application#create'
   get '/posts' => 'application#post'
+  # Pipet step
+  get '/solutions' => 'application#solutions'
+
+  # DOOO NOT PUT ANYTHING BELOW THIS ROUTE
   get '*path' => 'application#index'
-  
+
+
+
   # maybe dashboard
 
   # The priority is based upon order of creation: first created -> highest priority.

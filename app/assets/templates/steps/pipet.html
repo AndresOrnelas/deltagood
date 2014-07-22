@@ -4,11 +4,13 @@
 
 <div class="box">{{protocols.steps[counter].name}}</div>
 
-<input id = "incubatortime" type = "text" placeholder = "{{protocols.steps[counter].volume}} microliters"> 
+<input ng-model="pipetVolume" id = "incubatortime" type = "number" > 
 
-<select>
-  <option value="volvo">Volvo</option>
-  <option value="saab">Saab</option>
-  <option value="mercedes">Mercedes</option>
-  <option value="audi">Audi</option>
-</select>
+<!-- We need to ve able to save the model to the controller automatically in some way 
+without having to submit -->
+{{solutions}}
+{{newVol}}
+
+<select ng-model="selectedSolutions" ng-options="solution.name + ' ' + (solution.lot || solution.user_id) for solution in solutions"></select>
+
+{{selectedSolutions}}
