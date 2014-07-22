@@ -2,6 +2,8 @@
 <html>
 <head>
   <title>AngularRails</title>
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="css/bootstrap.min.css" rel="stylesheet" media="screen"> -->
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application', controller_name %>
   <%= csrf_meta_tags %>
@@ -16,7 +18,7 @@
 
      <!--  Signed in as <%= current_user.email %>. Not you?  
       <%= link_to "   Sign out", destroy_user_session_path, :method => :delete %> -->
-      <div style = "background-color: #7FDBFF;" ng-app = 'AngularRails'>
+      <div ng-app = 'AngularRails'>
         <%= yield %>
       </div>
      <% else %>
@@ -28,6 +30,7 @@
   <% flash.each do |name,msg| %>
   <%= content_tag :div, msg, :id => "flash_#{name}" %>
   <% end %>
+
 
 </body>
 </html>

@@ -1,6 +1,13 @@
 <div ng-class="slide">
- <h1> Protocol {{protocol.name}} </h1>
-<h2> Run {{protocols.counter}} </h2>
-<div class = "box" ng-click = "visit('/newrun/' + protocols.name + '/1')"> BEGIN </div>
-<div  class = "box" ng-click = "visit('/')"> BACK </div>
+ <h1> Protocol {{protocol.name}}, Run {{protocols.counter}} </h2>
+	<div class = "container">
+		<div class="row">
+			<div class="col-xs-6 text-center pagination-centered">
+				<button class = "btn btn-large btn-warning" ng-click = "visit('/')"><span class="glyphicon glyphicon-arrow-left"></span> BACK </button>
+			</div>
+			<div class ="col-xs-6 text-center pagination-centered">
+				<button class = "btn btn-large btn-success" ng-click = "visit('/newrun/' + protocols.name + '/1')"> BEGIN <span class="glyphicon glyphicon-arrow-right"></span></button>
+			</div>
+		</div>
+	</div>
 </div>
