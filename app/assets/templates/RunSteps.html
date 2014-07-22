@@ -1,6 +1,6 @@
 <!-- <div ng-init = "showAction = false"> -->
 <div style="height: 700px" ng-init = "counter = 0" >
-	<div ng-swipe-left="addCounter()" ng-switch on="protocols.steps[counter].type">
+	<div ng-swipe-left="nextStep()" ng-switch on="protocols.steps[counter].type">
 
 		<div ng-class= "slide" style = "width: 100%; " ng-switch-when="prepare" >
 			<div ng-include= "'steps/prepare.html'">

@@ -65,7 +65,18 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def solutions
+    puts params[:solution]
+
+    respond_with Solution.where(name: params[:solution])
+  end
+
+
+
+
   def post
     respond_with Post.all
   end
+
+
 end
