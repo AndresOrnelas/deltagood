@@ -5,15 +5,12 @@ class ApplicationController < ActionController::Base
   respond_to :json, :html
   def index
     @users = User.all
-  	@posts = Post.all
   end
 
   def test
   	respond_with User.all
   end
   def protocoltype
-    # This is still hardcoded. Correct it so that it loads with params.
-    # stuff = params[:]
     respond_with Protocol.find_by(name: params[:name])
   end
 
@@ -71,12 +68,20 @@ class ApplicationController < ActionController::Base
     respond_with Solution.where(name: params[:solution])
   end
 
-
-
-
-  def post
-    respond_with Post.all
+# Pipet step and prepare solution step calls----------------------------------------------------------------
+  def solutions
+    puts Solution.where(name: params[:solution])
+    respond_with Solution.where(name: params[:solution])
   end
 
+  def updateSolutions
+    puts params[:newVolume]
+    puts params[:solutionNum]
+
+    update_solution = Solution.find(params[:solutionNum]).update(quantity: params[:newVolume])
+    respond_with(update_solution) do |format|
+        format.json { render :json => update_solution.as_json }
+      end
+  end
 
 end

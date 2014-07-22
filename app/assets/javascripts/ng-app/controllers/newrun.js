@@ -1,6 +1,7 @@
 myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProperties) {
       
     //Initializing variables
+    $scope.model = {};
     $scope.slide = 'slide-left'
     $scope.counter = sharedProperties.getCounter().position;
     $scope.count = $scope.counter;
@@ -62,9 +63,6 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
              $scope.getSolutions();
              $scope.getReagents();
           }
-
-
-
               // not even working yet
               if($scope.protocols.steps[$scope.counter-1].type === 'pipet'){
                 $scope.substractQuantity();
@@ -113,6 +111,7 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
     console.log($scope.counter);
     $http.get('/solutions.json', params).success(function(data){
       $scope.solutions = data;
+      console.log($scope.solutions)
       $scope.model.selectedSolutions = $scope.solutions[0];
       $scope.model.pipetVolume = $scope.protocols.steps[$scope.counter].volume;
     });
