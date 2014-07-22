@@ -134,14 +134,21 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http) {
 // ------------------------------------------------Prepate solution------------------------------------------
 
   $scope.getReagents = function(){
+
+
  $http.get('/solutions.json', { params: {solution: $scope.protocols.steps[$scope.counter].reagent1}}).success(function(reagents1){
-    $scope.reagents1 = reagents1;
-    $scope.selectedReagents1 = $scope.reagents1[0];
+    $scope.model.reagents1 = reagents1;
+    $scope.model.selectedReagents1 = $scope.model.reagents1[0];
+    // $scope.model.proportion1 = $scope.protocols.steps[$scope.counter]
+
     });
+
+ 
  $http.get('/solutions.json', { params: {solution: $scope.protocols.steps[$scope.counter].reagent2}}).success(function(reagents2){
-    $scope.reagents2 = reagents2;
-    $scope.selectedReagents2 = $scope.reagents2[0];
+    $scope.model.reagents2 = reagents2;
+    $scope.model.selectedReagents2 = $scope.model.reagents2[0];
     });
+ 
   }
 
   // $scope.resetDiv = function(){
