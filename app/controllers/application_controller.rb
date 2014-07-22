@@ -14,7 +14,6 @@ class ApplicationController < ActionController::Base
   def protocoltype
     # This is still hardcoded. Correct it so that it loads with params.
     # stuff = params[:]
-
     respond_with Protocol.find_by(name: params[:name])
   end
 
@@ -23,17 +22,18 @@ class ApplicationController < ActionController::Base
   end
 
   def run
-    # make params more specific
-    # puts params[:name]
-    # a = params[:name].to_s
-    # puts "hello world"
-    # puts Run.where(protocol_id: Protocol.find_by(name: 'B').id)
     respond_with Run.all
   end
+
+  def runtype
+    respond_with Run.find_by(id: params[:id])
+  end
+
   def createrun
     puts "hahah"
-    puts params[:_json]
-        new_run = Run.create(protocol_id: 1, user_id: 1, inputs: params[:_json])
+    puts params[:protocol]
+    puts "james"
+        new_run = Run.create(protocol_id: params[:protocol].id, user_id: 1, inputs: params[:values])
     respond_with(new_run) do |format|
         format.json { render :json => new_run.as_json }
       end

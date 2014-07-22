@@ -150,9 +150,9 @@
 .slide-right.ng-leave {
     position: absolute;
     background: inherit;
-    -ms-transition: 1s ease-in-out;
-    -webkit-transition: 1s ease-in-out;
-    transition:  1s ease-in-out;
+    -ms-transition: .3s ease-in-out;
+    -webkit-transition: .3s ease-in-out;
+    transition:  .3s ease-in-out;
 }
 
 

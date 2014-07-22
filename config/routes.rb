@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/user' => 'application#user'
   post '/run' => 'application#createrun'
   get '/run' => 'application#run'
+  get '/runtype' => 'application#runtype'
   get '/protocol' => 'application#protocol'
   get '/protocoltype' => 'application#protocoltype'
   get '/test' => 'application#test'

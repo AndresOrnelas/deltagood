@@ -17,12 +17,12 @@ setup to go with ng-repeat -->
 		</div>
 
 		<div class="col-md-3">
-       		 <button ng-click= "visit('/' +'newrun' + '/'+ protocol.name)" class="btn btn-success btn-large btn-block"> Start Run 
+       		 <button ng-click= "visit('/' +'newrun' + '/'+ protocol.name, protocol.name)" class="btn btn-success btn-large btn-block"> Start Run 
        	     </button>
        	</div>
 
        	<div class="col-md-3">
-        <button class="btn btn-warning btn-large" ng-click="visit('/'+ protocol.name)"> Run History </div>
+        <button class="btn btn-warning btn-large" ng-click="visit('/'+ protocol.name, protocol.name)"> Run History </div>
     </div>
     </div>
 </div>

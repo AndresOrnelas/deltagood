@@ -4,7 +4,7 @@ myApp.config([
   }
 ]);
 
-myApp.controller('HomeCtrl', function ($scope, $location, $http) {
+myApp.controller('HomeCtrl', function ($scope, $location, $http, sharedProperties) {
         $scope.slide = 'slide-left'
         $scope.things = ['Angular', 'Rails 4.1', 'Working', 'Together!!', 'Sara'];
         $scope.go = function(path){
@@ -17,14 +17,16 @@ myApp.controller('HomeCtrl', function ($scope, $location, $http) {
         });
 
         //Activated when we want to see Run History
-        $scope.visit = function(data){
+        $scope.visit = function(data, name){
           $scope.slide = 'slide-left';
+          sharedProperties.setProtocol(name)
           $location.url(data)
         }
 
         //Activated when we start a Run
-        $scope.start = function(data){
+        $scope.start = function(data, name){
           $scope.slide = 'slide-right';
+          sharedProperties.setProtocol(name)
           $location.url(data)
         }
 

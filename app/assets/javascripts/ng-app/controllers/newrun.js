@@ -1,4 +1,4 @@
-myApp.controller('NewRunCtrl', function ($scope, $location,  $http) {
+myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProperties) {
       
     //Initializing variables
     $scope.slide = 'slide-left'
@@ -7,10 +7,12 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http) {
     $scope.values = [];
     $scope.imagelength = 0;
     $scope.disable = "";
-    $scope.locate = $location.path().substring(8,9);
+    // $scope.locate = $location.path().substring(8,9);
+    $scope.locate = sharedProperties.getProtocol();
     // Variables for pipet step
     $scope.selectedSolutions = 90;
     $scope.pipetVolume = 90;
+    $scope.counter = sharedProperties.getCounter().position;
 
     // $scope.$watch('selectedSolutions', function(nVal, oVal){});
     // $scope.$watch('pipetVolume', function(nVal, oVal){
@@ -18,7 +20,7 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http) {
     // });
 
     //HARD CODED FIX THIS
-    $http.get('/protocoltype.json', { params: {name: $scope.locate}}).success(function(data){
+    $http.get('/protocoltype.json', { params: {name: $scope.locate.protocol1}}).success(function(data){
         //General
         $scope.protocols = data;
      	$scope.numsteps = $scope.protocols.steps.length;
@@ -52,13 +54,10 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http) {
     }
 
     //General Steps Javascript
-    $scope.nextStep = function(){
+    $scope.nextStep = function(data){
 		if($scope.counter !== $scope.numsteps-1){
 	    	$scope.slide = 'slide-left';
-	      	$scope.counter = $scope.counter + 1;
-	      	// if($scope.protocols.steps[$scope.counter-1].type === 'prepare'){
-	      	// 	$scope.values.push({type: 'prepare', hello: '5'});
-        //   }
+	      	$scope.counter = sharedProperties.addCounter().position;
           if($scope.protocols.steps[$scope.counter].type === 'pipet'){
             //Pipet if statement
             $scope.getSolutions();
@@ -68,13 +67,12 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http) {
              $scope.getSolutions();
              $scope.getReagents();
           }
-
-
-
               // not even working yet
               if($scope.protocols.steps[$scope.counter-1].type === 'pipet'){
                 $scope.substractQuantity();
               }
+        $location.url(data);
+
 	    }
 	    else{
 	      	alert('Reached end of steps!');
@@ -87,13 +85,15 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http) {
       	}
     }
     $scope.visit = function(data){
+      sharedProperties.setCounter();
     	$scope.slide = 'slide-left';
     	$location.url(data)
     }
 
     $scope.addNew = function(){
-	  	$http.post('/run.json',$scope.values); 
-	    $scope.slide = 'slide-right';
+	  	$http.post('/run.json', {params: {values: $scope.values, protocol: $scope.protocols}}); 
+	    $scope.protocols.counter = $scope.protocols.counter + 1;
+      $scope.slide = 'slide-right';
 	  	$location.url('/')  
 	    $scope.slide = 'slide-left';
 	}
@@ -101,6 +101,12 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http) {
   		$scope.counter = $scope.counter + 1;
 //  we no longer use this function anymore, we replaced it in swipe left with nextStep()
 	}
+  $scope.startRun = function(data){
+     sharedProperties.setCounter();
+      $scope.slide = 'slide-left';
+     $http.post('/run.json',{params: {values: $scope.values, protocol: $scope.protocols}});
+      $location.url(data)
+  }
 
 // ----------------------------------Pipet functions---------------------------------------------------------
   $scope.getSolutions = function(){

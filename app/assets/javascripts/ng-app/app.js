@@ -4,7 +4,36 @@ var myApp = angular.module('AngularRails', [
         'ngTouch',
         'ngAnimate'
     ]);
+myApp.service('sharedProperties', function () {
+        var protocol = {protocol1: "A"};
+        var run = {run1: 1};
+        var counter = {position: 0};
 
+        return {
+            getCounter: function(){
+                return counter;
+            },
+            addCounter: function(){
+                counter.position = counter.position + 1;
+                return counter;
+            },
+            setCounter: function(){
+                counter.position = 0;
+            },
+            getProtocol: function () {
+                return protocol;
+            },
+            setProtocol: function(value) {
+                protocol.protocol1 = value;
+            },
+            getRun: function(){
+                return run;
+            },
+            setRun: function(value){
+                run.run1 = value;
+            }
+        };
+    });
 myApp.config(function ($routeProvider, $locationProvider) {
         $routeProvider
             .when('/', {
@@ -21,10 +50,6 @@ myApp.config(function ($routeProvider, $locationProvider) {
                 templateUrl: 'RunSteps.html',
                 controller: 'NewRunCtrl'
             });
-            // $routeProvider
-            // .when('/tim', {
-            //     templateURL: 'templates/tim.html',
-            //     controller: 'HomeCtrl'});
             $routeProvider
             .when('/:protocol', {
                 templateUrl: 'protocol.html',
@@ -43,7 +68,7 @@ myApp.config(function ($routeProvider, $locationProvider) {
             });
 
 
-        $locationProvider.html5Mode(true);
+        $locationProvider.html5Mode(false);
     });
 
 myApp.config([
