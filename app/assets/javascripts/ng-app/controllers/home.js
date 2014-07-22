@@ -30,10 +30,6 @@ myApp.controller('HomeCtrl', function ($scope, $location, $http, sharedPropertie
           $location.url(data)
         }
 
-
-        $http.get('/posts.json').success(function(data){
-        	$scope.post = data;
-        });
    // Trying to generate and save the thing
       $scope.addNew = function(){
       	var todo = {

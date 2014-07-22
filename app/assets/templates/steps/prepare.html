@@ -4,18 +4,25 @@
 
 <div class="box">{{protocols.steps[counter].name}}</div>
 
-<div ng-hide = "selectedSolutions == null">
-	<select ng-model="selectedSolutions" ng-options="solution.name + ' ' + (solution.lot || solution.user_id) for solution in solutions">
+<div ng-hide = "model.selectedSolutions == null">
+	<select ng-model="model.selectedSolutions" ng-options="solution.name + ' ' + (solution.lot || solution.user_id) for solution in solutions">
 	 <option value = ""> Create solution </option>
 	</select>
 </div>
-<div ng-show = "selectedSolutions == null">
-	<select ng-model="selectedReagents1" ng-options="solution.name + ' ' + (solution.lot || solution.user_id) for solution in reagents1">
+<div ng-show = "model.selectedSolutions == null">
+
+	<select ng-model="model.selectedReagents1" ng-options="solution.name + ' ' + (solution.lot || solution.user_id) for solution in model.reagents1">
 	</select>
-	<select ng-model="selectedReagents2" ng-options="solution.name + ' ' + (solution.lot || solution.user_id) for solution in reagents2">
+	
+
+	<select ng-model="model.selectedReagents2" ng-options="solution.name + ' ' + (solution.lot || solution.user_id) for solution in model.reagents2">
 	</select>
-	<button ng-click="selectedSolutions = solutions[solutions.length-1]">Save</button>
-	<!-- reload the page with the updated get solution ... Ideally, we need to be able to update the value of selectedSolutions from the controller, by calling a function here-->
+
+	<input ng-model="model.quantityMadeSolution" id = "incubatortime" type = "number" > 
+
+
+	<button ng-click="model.selectedSolutions = solutions[solutions.length-1]">Save</button>
+	<!-- reload the page with the updated get solution ... Ideally, we need to be able to update the value of model.selectedSolutions from the controller, by calling a function here-->
 </div>
 
-{{selectedSolutions}}
+{{model.selectedSolutions}}

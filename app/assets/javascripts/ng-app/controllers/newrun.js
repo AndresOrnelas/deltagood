@@ -1,6 +1,8 @@
 myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProperties) {
       
     //Initializing variables
+
+    $scope.model = {};
     $scope.slide = 'slide-left'
     $scope.count = $scope.counter;
     $scope.imgcounter = 0;
@@ -10,14 +12,6 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
     // $scope.locate = $location.path().substring(8,9);
     $scope.locate = sharedProperties.getProtocol();
     // Variables for pipet step
-    $scope.selectedSolutions = 90;
-    $scope.pipetVolume = 90;
-    $scope.counter = sharedProperties.getCounter().position;
-
-    // $scope.$watch('selectedSolutions', function(nVal, oVal){});
-    // $scope.$watch('pipetVolume', function(nVal, oVal){
-    //   $scope.pipetVolume = 
-    // });
 
     //HARD CODED FIX THIS
     $http.get('/protocoltype.json', { params: {name: $scope.locate.protocol1}}).success(function(data){
@@ -58,6 +52,8 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
 		if($scope.counter !== $scope.numsteps-1){
 	    	$scope.slide = 'slide-left';
 	      	$scope.counter = sharedProperties.addCounter().position;
+          $location.url(data);
+
           if($scope.protocols.steps[$scope.counter].type === 'pipet'){
             //Pipet if statement
             $scope.getSolutions();
@@ -71,7 +67,6 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
               if($scope.protocols.steps[$scope.counter-1].type === 'pipet'){
                 $scope.substractQuantity();
               }
-        $location.url(data);
 
 	    }
 	    else{
@@ -110,39 +105,56 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
 
 // ----------------------------------Pipet functions---------------------------------------------------------
   $scope.getSolutions = function(){
-    $http.get('/solutions.json', { params: {solution: $scope.protocols.steps[$scope.counter].solution}} ).success(function(data){
-    $scope.solutions = data;
-    $scope.selectedSolutions = $scope.solutions[0];
-    $scope.pipetVolume = $scope.protocols.steps[$scope.counter].volume;
-
+    var params = {
+      params: {
+        solution: $scope.protocols.steps[$scope.counter].solution
+      }
+    };
+    console.log('getsolution');
+    console.log($scope.counter);
+    $http.get('/solutions.json', params).success(function(data){
+      $scope.solutions = data;
+      $scope.model.selectedSolutions = $scope.solutions[0];
+      $scope.model.pipetVolume = $scope.protocols.steps[$scope.counter].volume;
     });
   }
 
   $scope.substractQuantity = function(){
-    // We need to be able to get this element
-    var newVol = $scope.selectedSolutions.quantity - $scope.pipetVolume;
-    // alert($scope.selectedSolutions)
+    var newVol = $scope.model.selectedSolutions.quantity - $scope.model.pipetVolume;
+
+    solutionId = $scope.model.selectedSolutions.id;
+
     if (newVol < 0) {
       alert("Not Enough Solution!");
-      $scope.counter = $scope.counter- 1;
+    console.log('substract');
+      console.log($scope.counter);
+      $scope.counter = $scope.counter-1;
+      $scope.getSolutions();
     }
 
     else {
-      $http.post('/solutions.json', { params: {newVolume: newVol}} ).success(function(data){
+      $http.post('/solutions.json', {newVolume: newVol, solutionNum: solutionId}).success(function(data){
       });
     };
   }
 // ------------------------------------------------Prepate solution------------------------------------------
 
   $scope.getReagents = function(){
+
+
  $http.get('/solutions.json', { params: {solution: $scope.protocols.steps[$scope.counter].reagent1}}).success(function(reagents1){
-    $scope.reagents1 = reagents1;
-    $scope.selectedReagents1 = $scope.reagents1[0];
+    $scope.model.reagents1 = reagents1;
+    $scope.model.selectedReagents1 = $scope.model.reagents1[0];
+    // $scope.model.proportion1 = $scope.protocols.steps[$scope.counter]
+
     });
+
+ 
  $http.get('/solutions.json', { params: {solution: $scope.protocols.steps[$scope.counter].reagent2}}).success(function(reagents2){
-    $scope.reagents2 = reagents2;
-    $scope.selectedReagents2 = $scope.reagents2[0];
+    $scope.model.reagents2 = reagents2;
+    $scope.model.selectedReagents2 = $scope.model.reagents2[0];
     });
+ 
   }
 
   // $scope.resetDiv = function(){

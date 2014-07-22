@@ -1,18 +1,16 @@
+<div class="container">
+ <h3>Protocol {{protocols.name}},  Step #{{counter+1}} </h3>
 
-<h1> Mechanical </h1>
-<h2> Procedure: Protocol {{protocols.name}} </h2>
-<h2> Step #{{counter+1}} </h2>
-
-<div class="box">{{protocols.steps[counter].name}}</div>
+<h1>{{protocols.steps[counter].name}}<h1>
 <div class = "clock"></div>
 
 <div class = "mechanicalimgbox"> 
-<h2> {{protocols.steps[counter].name}} </h2>
 <!-- This image needs to be uploaded by user, go to another website -->
 <div ng-class= "slide" >
 	<img style="width: 200px; height: 200px;"src="{{imglink}}"> <br>
 	<button ng-click = "imgBack()" class="btn btn-small">Back</button>
 	<button ng-click= "imgMove()" class="btn btn-small"> Fwrd </button>
 </div>		
+</div>
 
 

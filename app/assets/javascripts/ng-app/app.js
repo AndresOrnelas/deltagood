@@ -34,6 +34,7 @@ myApp.service('sharedProperties', function () {
             }
         };
     });
+//Look into require.js, test problem in production locally.
 myApp.config(function ($routeProvider, $locationProvider) {
         $routeProvider
             .when('/', {
@@ -70,9 +71,10 @@ myApp.config(function ($routeProvider, $locationProvider) {
 
         $locationProvider.html5Mode(false);
     });
-
+    //Should we delete this?????
 myApp.config([
   "$httpProvider", function(provider) {
     return provider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
   }
 ]);
+

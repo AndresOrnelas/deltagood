@@ -7,7 +7,7 @@ sheet.each do |row|
 	break if row[0].nil?
 	if row[2] == 'prepare'
 		data.push({name: row[1], type: row[2], ingredients: [row[3], row[4], product: row[5]]})
-	elsif row[2] == ' mechanical'
+	elsif row[2] == 'mechanical'
 		data.push({name: row[1], type: row[2], images: [row[3], row[4]]})
 	elsif row[2] == 'pipet'
 		data.push({name: row[1], type: row[2], ingredients: [row[3]]})
@@ -25,7 +25,7 @@ puts "])"
 File.open('data.txt', 'w'){ |file|
 	file.write("steps: [")
 	data.each do |step|
-		file.write(step.to_s + ",")
+		file.write(step.to_s + ",\n")
 	end
 	file.write("])")
 }
