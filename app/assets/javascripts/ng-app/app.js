@@ -4,7 +4,7 @@ var myApp = angular.module('AngularRails', [
         'ngTouch',
         'ngAnimate'
     ]);
-
+//Look into require.js, test problem in production locally.
 myApp.config(function ($routeProvider, $locationProvider) {
         $routeProvider
             .when('/', {
