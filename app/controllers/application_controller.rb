@@ -5,16 +5,14 @@ class ApplicationController < ActionController::Base
   respond_to :json, :html
   def index
     @users = User.all
-  	@posts = Post.all
   end
 
   def test
   	respond_with User.all
   end
-  def protocoltype
-    # This is still hardcoded. Correct it so that it loads with params.
-    # stuff = params[:]
 
+  # Call for the protocol that is accessed in newrun.js and used to serve as a template
+  def protocoltype
     respond_with Protocol.find_by(name: params[:name])
   end
 
@@ -22,61 +20,35 @@ class ApplicationController < ActionController::Base
     respond_with Protocol.all
   end
 
+  #Calls for all of the runs
   def run
-    # make params more specific
-    # puts params[:name]
-    # a = params[:name].to_s
-    # puts "hello world"
-    # puts Run.where(protocol_id: Protocol.find_by(name: 'B').id)
     respond_with Run.all
   end
   def createrun
-    puts "hahah"
-    puts params[:_json]
-        new_run = Run.create(protocol_id: 1, user_id: 1, inputs: params[:_json])
+    new_run = Run.create(protocol_id: 1, user_id: 1, inputs: params[:_json])
     respond_with(new_run) do |format|
-        format.json { render :json => new_run.as_json }
-      end
+      format.json { render :json => new_run.as_json }
+    end
   end
 
   def user
     respond_with User.all
   end
 
-  def create
-    puts params[:text]
-    # Create and save new post from data received from the client
-    new_post = Post.create(text: params[:text])
-    # new_post.text = params[:new_post][:title]
-    # new_post.title = params[:new_post][:title][0...250] # Get only first 250 characters
-    # new_post.contents = params[:new_post][:contents]
-
-    # Confirm post is valid and save or return HTTP error
-    # if new_post.valid?
-    #   new_post.save!
-    # else
-    #   render "public/422", :status => 422
-    #   return
-    # end
-
-    # Respond with newly created post in json format
-    respond_with(new_post) do |format|
-      format.json { render :json => new_post.as_json }
-    end
-  end
-
+# Pipet step and prepare solution step calls----------------------------------------------------------------
   def solutions
     puts params[:solution]
 
     respond_with Solution.where(name: params[:solution])
   end
 
+  def updateSolutions
+    puts params[:newVolume]
+    puts params[:solutionNum]
 
-
-
-  def post
-    respond_with Post.all
+    update_solution = Solution.find(params[:solutionNum]).update(quantity: params[:newVolume])
+    respond_with(update_solution) do |format|
+        format.json { render :json => update_solution.as_json }
+      end
   end
-
-
 end

@@ -4,13 +4,15 @@
 
 <div class="box">{{protocols.steps[counter].name}}</div>
 
-<input ng-model="pipetVolume" id = "incubatortime" type = "number" > 
+<input ng-model="model.pipetVolume" id = "incubatortime" type = "number" > 
 
 <!-- We need to ve able to save the model to the controller automatically in some way 
 without having to submit -->
 {{solutions}}
 {{newVol}}
+{{pipetVolume}}
 
-<select ng-model="selectedSolutions" ng-options="solution.name + ' ' + (solution.lot || solution.user_id) for solution in solutions"></select>
+
+<select ng-model="model.selectedSolutions" ng-options="solution.name + ' ' + (solution.lot || solution.user_id) for solution in solutions"></select>
 
 {{selectedSolutions}}

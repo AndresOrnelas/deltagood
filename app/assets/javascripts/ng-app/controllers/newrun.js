@@ -1,6 +1,8 @@
 myApp.controller('NewRunCtrl', function ($scope, $location,  $http) {
       
     //Initializing variables
+
+    $scope.model = {};
     $scope.slide = 'slide-left'
     $scope.count = $scope.counter;
     $scope.imgcounter = 0;
@@ -9,14 +11,7 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http) {
     $scope.disable = "";
     $scope.locate = $location.path().substring(8,9);
     // Variables for pipet step
-    $scope.selectedSolutions = 90;
-    $scope.pipetVolume = 90;
-
-    // $scope.$watch('selectedSolutions', function(nVal, oVal){});
-    // $scope.$watch('pipetVolume', function(nVal, oVal){
-    //   $scope.pipetVolume = 
-    // });
-
+    
     //HARD CODED FIX THIS
     $http.get('/protocoltype.json', { params: {name: $scope.locate}}).success(function(data){
         //General
@@ -104,25 +99,32 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http) {
 
 // ----------------------------------Pipet functions---------------------------------------------------------
   $scope.getSolutions = function(){
-    $http.get('/solutions.json', { params: {solution: $scope.protocols.steps[$scope.counter].solution}} ).success(function(data){
-    $scope.solutions = data;
-    $scope.selectedSolutions = $scope.solutions[0];
-    $scope.pipetVolume = $scope.protocols.steps[$scope.counter].volume;
-
+    var params = {
+      params: {
+        solution: $scope.protocols.steps[$scope.counter].solution
+      }
+    };
+    $http.get('/solutions.json', params).success(function(data){
+      $scope.solutions = data;
+      $scope.model.selectedSolutions = $scope.solutions[0];
+      $scope.model.pipetVolume = $scope.protocols.steps[$scope.counter].volume;
     });
   }
 
   $scope.substractQuantity = function(){
-    // We need to be able to get this element
-    var newVol = $scope.selectedSolutions.quantity - $scope.pipetVolume;
-    // alert($scope.selectedSolutions)
+    var newVol = $scope.model.selectedSolutions.quantity - $scope.model.pipetVolume;
+    console.log($scope.model.pipetVolume);
+    console.log($scope.model.selectedSolutions.id);
+
+    solutionId = $scope.model.selectedSolutions.id;
+
     if (newVol < 0) {
       alert("Not Enough Solution!");
       $scope.counter = $scope.counter- 1;
     }
 
     else {
-      $http.post('/solutions.json', { params: {newVolume: newVol}} ).success(function(data){
+      $http.post('/solutions.json', {newVolume: newVol, solutionNum: solutionId}).success(function(data){
       });
     };
   }

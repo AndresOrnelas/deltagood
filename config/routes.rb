@@ -9,12 +9,11 @@ Rails.application.routes.draw do
   get '/protocol' => 'application#protocol'
   get '/protocoltype' => 'application#protocoltype'
   get '/test' => 'application#test'
-  post '/posts' => 'application#create'
-  get '/posts' => 'application#post'
   # Pipet step
   get '/solutions' => 'application#solutions'
+  post '/solutions' => 'application#updateSolutions'
 
-  # DOOO NOT PUT ANYTHING BELOW THIS ROUTE
+  # DO NOT PUT ANYTHING BELOW THIS ROUTE
   get '*path' => 'application#index'
 
 
