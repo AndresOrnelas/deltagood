@@ -20,6 +20,10 @@ myApp.service('sharedProperties', function () {
             setCounter: function(){
                 counter.position = 0;
             },
+            changeCounter: function(data){
+                counter.position = counter.position + data;
+                return counter.position;
+            },
             getProtocol: function () {
                 return protocol;
             },
