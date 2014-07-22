@@ -104,6 +104,8 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http) {
         solution: $scope.protocols.steps[$scope.counter].solution
       }
     };
+    console.log('getsolution');
+    console.log($scope.counter);
     $http.get('/solutions.json', params).success(function(data){
       $scope.solutions = data;
       $scope.model.selectedSolutions = $scope.solutions[0];
@@ -113,14 +115,15 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http) {
 
   $scope.substractQuantity = function(){
     var newVol = $scope.model.selectedSolutions.quantity - $scope.model.pipetVolume;
-    console.log($scope.model.pipetVolume);
-    console.log($scope.model.selectedSolutions.id);
 
     solutionId = $scope.model.selectedSolutions.id;
 
     if (newVol < 0) {
       alert("Not Enough Solution!");
-      $scope.counter = $scope.counter- 1;
+    console.log('substract');
+      console.log($scope.counter);
+      $scope.counter = $scope.counter-1;
+      $scope.getSolutions();
     }
 
     else {
