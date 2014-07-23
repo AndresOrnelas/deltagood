@@ -24,6 +24,8 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
        	$scope.imagelinks = $scope.protocols.steps[$scope.counter].images;
        	$scope.imglink = $scope.imagelinks[$scope.imgcounter];
        	$scope.imagelength = $scope.imagelinks.length;
+        $scope.percent = (($scope.counter+1)/$scope.numsteps)*100;
+
      }
     });
 
@@ -56,6 +58,8 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
 	    	$scope.slide = 'slide-left';
         // $location.url(data);
 	      $scope.counter = sharedProperties.addCounter().position;
+        $scope.percent = (($scope.counter+1)/$scope.numsteps)*100;
+
        if($scope.protocols.steps[$scope.counter].type === 'pipet'){
             //Pipet if statement
             $scope.getSolutions();
@@ -71,7 +75,10 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
           }
       }
 	    else{
+        $scope.percent = ($scope.counter/$scope.numsteps)*100;
+
 	      	alert('Reached end of steps!');
+            $location.url('/')
 	    }
     }
     $scope.lastStep = function(){
