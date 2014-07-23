@@ -172,10 +172,12 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http) {
       };
 
       $http.post('/newSolution.json', params).success(function(data){
+        $scope.solutions.push(data);
+        $scope.model.selectedSolutions = data;
       });
-      $scope.getSolutions();
-      //WE NEED TO DELAY THIS TO COME AFTER PREVIOUS CALL!
-      $scope.model.selectedSolutions = $scope.solutions[$scope.solutions-1];
+      // $scope.getSolutions();
+      // //WE NEED TO DELAY THIS TO COME AFTER PREVIOUS CALL!
+      // $scope.model.selectedSolutions = $scope.solutions[$scope.solutions.length-1];
     };
 
   }
