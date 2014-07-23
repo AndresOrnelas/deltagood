@@ -78,7 +78,9 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
         $scope.percent = ($scope.counter/$scope.numsteps)*100;
 
 	      	alert('Reached end of steps!');
-            $location.url('/')
+        $http.post('/run.json', {params: {values: ["A"], protocol: $scope.protocols}}); 
+
+            $location.url('/' + $scope.protocols.name)
 	    }
     }
     $scope.lastStep = function(){
