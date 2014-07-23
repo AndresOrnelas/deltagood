@@ -11,8 +11,8 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
     $scope.disable = "";
     $scope.locate = sharedProperties.getProtocol();
     // Variables for pipet step
-    $scope.selectedSolutions = 90;
-    $scope.pipetVolume = 90;
+    // $scope.selectedSolutions = "duh";
+    // $scope.pipetVolume = 90;
 
     //HARD CODED FIX THIS
     $http.get('/protocoltype.json', { params: {name: $scope.locate.protocol1}}).success(function(data){
@@ -65,10 +65,10 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
              $scope.getSolutions();
              $scope.getReagents();
           }
-              // not even working yet
-              if($scope.protocols.steps[$scope.counter-1].type === 'pipet'){
-                $scope.substractQuantity();
-              }
+          // not even working yet
+          if($scope.protocols.steps[$scope.counter-1].type === 'pipet'){
+            $scope.substractQuantity();
+          }
       }
 	    else{
 	      	alert('Reached end of steps!');
