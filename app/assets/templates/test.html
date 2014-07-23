@@ -1,5 +1,5 @@
 
-<h1>Protocols</h1>
+<h1 class="protocolHeader">Protocols</h1>
 <!-- this bootstrap setup might get fucked up when we add more protocols... might need to change the container 
 setup to go with ng-repeat -->
 <div class="row">
@@ -7,7 +7,7 @@ setup to go with ng-repeat -->
         <div class="container-fluid" >
 
 		          <div class="col-xs-12 text-center pagination-centered" style="margin: 10px">
-                <h1> Protocol {{protocol.name}} </h1>
+                <h1 class="protocolName"> Protocol {{protocol.name}} </h1>
                 <img id="protocolImage" src= "http://www.zyvexlabs.com/EIPBNuG/EIPBN2010/GP-2010.png"> 
 
               </div>
@@ -17,11 +17,8 @@ setup to go with ng-repeat -->
               </div>
               <br>
               
-
-
-
               <div class="col-xs-12 text-center pagination-centered" style="margin: 10px">
-                      <button id="runButton" class="btn btn-warning btn-large" ng-click="visit('/'+ protocol.name, protocol.name)"> Run History</button> 
+                      <button class="btn-large startButton" ng-click="visit('/'+ protocol.name, protocol.name)"> Run Log </button> 
               </div>
 
         </div>
