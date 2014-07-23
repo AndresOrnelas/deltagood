@@ -11,13 +11,13 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
     $scope.disable = "";
     $scope.locate = sharedProperties.getProtocol();
     // Variables for pipet step
-    // $scope.selectedSolutions = "duh";
+
     // $scope.pipetVolume = 90;
 
     //HARD CODED FIX THIS
     $http.get('/protocoltype.json', { params: {name: $scope.locate.protocol1}}).success(function(data){
         //General
-        $scope.protocols = data;
+      $scope.protocols = data;
      	$scope.numsteps = $scope.protocols.steps.length;
      	//Mechanical
       if($scope.protocols.steps[$scope.counter].type == 'mechanical'){
