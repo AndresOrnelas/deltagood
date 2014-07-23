@@ -84,4 +84,10 @@ class ApplicationController < ActionController::Base
       end
   end
 
+  def createrun
+   new_run = Run.create(protocol_id: 1, user_id: 1, inputs: params[:_json])
+   respond_with(new_run) do |format|
+     format.json { render :json => new_run.as_json }
+  end
+
 end
