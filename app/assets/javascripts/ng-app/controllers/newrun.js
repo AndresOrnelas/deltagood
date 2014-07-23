@@ -160,4 +160,36 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
     $scope.model.selectedReagents2 = $scope.model.reagents2[0];
     });
   }
-});
+
+$scope.createSolution = function(){
+   var newVol1 = $scope.model.selectedReagents1.quantity - $scope.model.proportion1 * $scope.model.quantityMadeSolution;
+   var newVol2 = $scope.model.selectedReagents2.quantity - $scope.model.proportion2 * $scope.model.quantityMadeSolution;
+
+   if (newVol1 < 0 || newVol2 < 0) {
+     alert("Not Enough Solution!");
+   }
+
+   else {
+     $http.post('/solutions.json', {newVolume: newVol1, solutionNum: $scope.model.selectedReagents1.id}).success(function(data){
+     });
+     $http.post('/solutions.json', {newVolume: newVol2, solutionNum: $scope.model.selectedReagents2.id}).success(function(data){
+     });
+
+     var params = {
+       solution: $scope.protocols.steps[$scope.counter].solution,
+       volume: $scope.model.quantityMadeSolution * ($scope.model.proportion1 + $scope.model.proportion2),
+       reagents: [$scope.model.selectedReagents1.id, $scope.model.selectedReagents2.id]
+     };
+
+     $http.post('/newSolution.json', params).success(function(data){
+       $scope.solutions.push(data);
+       $scope.model.selectedSolutions = data;
+     });
+     // $scope.getSolutions();
+     // //WE NEED TO DELAY THIS TO COME AFTER PREVIOUS CALL!
+     // $scope.model.selectedSolutions = $scope.solutions[$scope.solutions.length-1];
+   };
+
+ }
+
+ });

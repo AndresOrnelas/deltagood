@@ -15,8 +15,9 @@ Rails.application.routes.draw do
   # Pipet step
   get '/solutions' => 'application#solutions'
   post '/solutions' => 'application#updateSolutions'
-  # Prepare solution step
-  # get '/proportion' => 'application#proportions'
+
+# Prepare solution step
+ post '/newSolution' => 'application#newSolution'
   
   # DOOO NOT PUT ANYTHING BELOW THIS ROUTE
   get '*path' => 'application#index'
