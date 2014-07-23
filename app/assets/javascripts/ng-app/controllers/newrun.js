@@ -51,10 +51,10 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
     }
 
     //General Steps Javascript
-    $scope.nextStep = function(data){
+    $scope.nextStep = function(){
 		if($scope.counter !== $scope.numsteps-1){
 	    	$scope.slide = 'slide-left';
-        $location.url(data);
+        // $location.url(data);
 	      $scope.counter = sharedProperties.addCounter().position;
        if($scope.protocols.steps[$scope.counter].type === 'pipet'){
             //Pipet if statement

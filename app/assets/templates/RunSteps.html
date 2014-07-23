@@ -1,5 +1,5 @@
 <div style="height: 500px" >
-	<div ng-swipe-left="nextStep('/newrun/'+ locate.protocol1 + '/'+ (counter+1))" ng-switch on="protocols.steps[counter].type">
+	<div ng-swipe-left="nextStep()" ng-switch on="protocols.steps[counter].type">
 		<div ng-class= "slide" style = "width: 100%; " ng-switch-when="prepare" >
 			<div ng-include= "'steps/prepare.html'">
 			</div>
@@ -11,7 +11,6 @@
 		</div>
 
 		<div ng-class= "slide" style = "width: 100%;" ng-switch-when="incubation"> 
-		<!-- <div ng-show="showAction === false" style = "background-color: blue"ng-swipe-left= "showAction = true"> -->
 			 <div ng-include= "'steps/incubation.html'">
 			</div>
 		</div>
@@ -25,7 +24,7 @@
 	
 	<!-- #delete  -->
 	<button ng-click = "lastStep()" class="btn btn-warning btn-large"><span class="glyphicon glyphicon-arrow-left"></span> Last Step </button>
-	<button ng-click= "nextStep('/newrun/'+ locate.protocol1 + '/'+ (counter+1))" class="btn btn-primary btn-large"> Next Step <span class="glyphicon glyphicon-arrow-right"></span> </button>
+	<button ng-click= "nextStep()" class="btn btn-primary btn-large"> Next Step <span class="glyphicon glyphicon-arrow-right"></span> </button>
 	<button   ng-click = "addNew()" class="btn btn-success btn-large"> <span class="glyphicon glyphicon-plus"></span> Add Run  </button>
 
 
