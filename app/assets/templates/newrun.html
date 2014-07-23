@@ -1,13 +1,14 @@
 
 <div ng-class="slide">
- <h1> Protocol {{protocol.name}}, Run {{protocols.counter}} </h2>
+ <h1 id="protocolHeaderNewRun"class="protocolHeader"> Protocol {{protocol.name}}</h1>
+ <h2 class="protocolName">Run {{protocols.counter}} </h2>
 	<div class = "container">
 		<div class="row">
 			<div class="col-xs-6 text-center pagination-centered">
-				<button class = "btn-large startButton" ng-click = "visit('/')"><span class="glyphicon glyphicon-arrow-left"></span> BACK </button>
+				<button class="btn-large startButton" ng-click = "visit('/')"></span> Back </button>
 			</div>
 			<div class ="col-xs-6 text-center pagination-centered">
-				<button class = "btn-large startButton" ng-click = "startRun('/newrun/' + protocols.name + '/0')"> BEGIN <span class="glyphicon glyphicon-arrow-right"></span></button>
+				<button class="btn-large startButton" ng-click = "startRun('/newrun/' + protocols.name + '/0')"> Begin</button>
 			</div>
 		</div>
 	</div>
