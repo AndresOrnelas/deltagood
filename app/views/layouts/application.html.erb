@@ -5,9 +5,10 @@
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application', controller_name %>
   <%= csrf_meta_tags %>
-<!-- <link href="app/assets/stylesheets/flipclock.css" rel="stylesheet" type="text/css"> -->
 
-</head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+   <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+<!-- <link href="app/assets/stylesheets/flipclock.css" rel="stylesheet" type="text/css"> --></head>
 <body>
   <%= render 'layouts/header' %>
    <%= render 'layouts/messages' %>

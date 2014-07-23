@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
     puts "hahah"
     puts params[:protocol]
     puts "james"
-        new_run = Run.create(protocol_id: params[:protocol].id, user_id: 1, inputs: params[:values])
+        new_run = Run.create(protocol_id: 3, user_id: 1, inputs: params[:values])
     respond_with(new_run) do |format|
         format.json { render :json => new_run.as_json }
       end

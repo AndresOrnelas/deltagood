@@ -51,14 +51,6 @@ border: 2px double #ffffff;
 	border: 2px solid white;
 }
 
-#runButton{
-	background: none;
-}
-
-#runButton:hover{
-	border: 2px solid white;
-}
-
 #headsty{
  	margin:0px;
  }
