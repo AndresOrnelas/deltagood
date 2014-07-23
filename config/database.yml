@@ -27,4 +27,8 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
+<<<<<<< HEAD
   database: db/production
+=======
+  database: db/production
+>>>>>>> de5bbac7fe732a023cdc78df6450a0232025869d
