@@ -86,12 +86,12 @@ class ApplicationController < ActionController::Base
 
   def newSolution
    new_solution = Solution.create(name: params[:solution], bought: false, user_id: current_user.id, quantity: params[:volume], reagents: params[:reagents])
-
    puts new_solution
-
    respond_with(new_solution) do |format|
        format.json { render :json => new_solution.as_json }
      end
  end
-
+ def configure_permitted_parameters
+      devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:name, :email, :password) }
+  end
 end
