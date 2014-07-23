@@ -51,4 +51,9 @@ class ApplicationController < ActionController::Base
         format.json { render :json => update_solution.as_json }
       end
   end
+
+  def newSolution
+    puts params
+    Solution.create(name: params[:solution], bought: false, user_id: current_user.id, quantity: params[:volume], reagents: params[:reagents])
+  end
 end
