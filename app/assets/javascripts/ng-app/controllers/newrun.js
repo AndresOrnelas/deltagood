@@ -20,9 +20,11 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
         $scope.protocols = data;
      	$scope.numsteps = $scope.protocols.steps.length;
      	//Mechanical
-     	$scope.imagelinks = $scope.protocols.steps[$scope.counter].images;
-     	$scope.imglink = $scope.imagelinks[$scope.imgcounter];
-     	$scope.imagelength = $scope.imagelinks.length;
+      if($scope.protocols.steps[$scope.counter].type == 'mechanical'){
+       	$scope.imagelinks = $scope.protocols.steps[$scope.counter].images;
+       	$scope.imglink = $scope.imagelinks[$scope.imgcounter];
+       	$scope.imagelength = $scope.imagelinks.length;
+     }
     });
 
 
