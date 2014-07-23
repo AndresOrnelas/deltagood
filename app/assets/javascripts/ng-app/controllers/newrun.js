@@ -137,7 +137,7 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
       alert("Not Enough Solution!");
     console.log('substract');
       console.log($scope.counter);
-      $scope.counter = sharedProperties.changeCounter(-1).position;
+      $scope.counter = sharedProperties.changeCounter(-1);
       $scope.getSolutions();
     }
 
