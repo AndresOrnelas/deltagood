@@ -18,16 +18,24 @@ myApp.controller('HomeCtrl', function ($scope, $location, $http, sharedPropertie
 
         //Activated when we want to see Run History
         $scope.visit = function(data, name){
-          $scope.slide = 'slide-left';
+          $scope.slide = 'slide-right';
+          sharedProperties.setHome(1);
           sharedProperties.setProtocol(name)
-          $location.url(data)
+          if(sharedProperties.getHome().from == 1){
+            console.log("lol");
+            $location.url(data)
+          }
         }
 
         //Activated when we start a Run
         $scope.start = function(data, name){
           $scope.slide = 'slide-right';
+          sharedProperties.setHome(1);
           sharedProperties.setProtocol(name)
-          $location.url(data)
+          if(sharedProperties.getHome().from == 1){
+            console.log("lol");
+            $location.url(data)
+          }
         }
 
    // Trying to generate and save the thing

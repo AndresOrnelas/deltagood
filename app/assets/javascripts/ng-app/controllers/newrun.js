@@ -8,15 +8,20 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
     $scope.imgcounter = 0;
     $scope.imagelength = 0;
     $scope.disable = "";
+        console.log("hahahahahahahahah")
+
     $scope.locate = sharedProperties.getProtocol();
     // Try to see what would happen if the first step is not mechanical
-    console.log("ANDRES")
-    console.log(sharedProperties.getRun().run1);
+    if(sharedProperties.getHome().from == 1){
+      $http.get('/protocoltype.json', { params: {name: $scope.locate.protocol1}}).success(function(data){
+        $scope.protocols = data;
+        console.log("from home")
+      });
+    }
+    else{
     $http.get('/runtype.json', { params: {id: sharedProperties.getRun().run1}}).success(function(data){
-      console.log("i hate this")
       $scope.protocols = data;
-      console.log($scope.protocols);
-
+      $scope.startVoiceRecognition();
       $scope.numsteps = $scope.protocols.inputs.length;
         $scope.values = $scope.protocols.inputs;
 
@@ -28,10 +33,8 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
           $scope.percent = (($scope.counter+1)/$scope.numsteps)*100;
         }
         $scope.prepareEverything();
-        
-
-
     });
+  }
 
 	//Incubatation.html javascript
     $scope.clock = function(time){
@@ -111,16 +114,62 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
         }
     }
     $scope.lastStep = function(){
-    	if($scope.counter !== 0){
-   			$scope.slide = 'slide-right';
-      		$scope.counter = sharedProperties.changeCounter(-1);
-      	}
+
+if($scope.protocols.inputs[$scope.counter].type === 'mechanical'){
+    }
+    else if($scope.protocols.inputs[$scope.counter].type === 'incubation'){
+        $scope.values[$scope.counter].temp = $scope.model.incubationTemp;
+        $scope.values[$scope.counter].time = $scope.model.incubationTimeValue;
+    }
+    else if($scope.protocols.inputs[$scope.counter].type === 'pipet'){
+        $scope.values[$scope.counter].usedSolution = $scope.model.selectedSolutions.id;
+        $scope.values[$scope.counter].volume = $scope.model.pipetVolume;
+    }
+    else if($scope.protocols.inputs[$scope.counter].type === 'prepare'){
+        $scope.values[$scope.counter].usedSolution = $scope.model.selectedSolutions.id;
     }
 
-    $scope.visit = function(data){
+    $http.post('/runupdate.json', {values: $scope.values, id: sharedProperties.getRun().run1, currentStep: $scope.counter+1}); 
+    $scope.protocols.inputs = $scope.values;
+
+    if($scope.counter !== 0){
+        $scope.slide = 'slide-right';
+        $scope.counter = sharedProperties.changeCounter(-1);
+
+        $scope.percent = (($scope.counter+1)/$scope.numsteps)*100;
+
+        $scope.prepareEverything();
+      }
+     else{
+        $scope.percent = ($scope.counter/$scope.numsteps)*100;
+        alert('Reached end of steps!');
+        // $http.post('/run.json', {params: {values: ["A"], protocol: $scope.protocols}}); 
+        $location.url('/' + $scope.protocols.protocolName)
+      }
+
+
+
+
+    }
+$scope.startRun = function(data){
       sharedProperties.setCounter(0);
-    	$scope.slide = 'slide-left';
-    	$location.url(data)
+      sharedProperties.setHome(0);
+      $scope.startVoiceRecognition();
+      $scope.slide = 'slide-left';
+      $http.post('/run.json',{protocolid: $scope.protocols.id, protocolName: $scope.protocols.name, steps: $scope.protocols.steps});
+     //saves the run into services to be accessed when i want to update runs
+      $http.get('/lastrun.json', {params: {id: $scope.protocols.id}}).success(function(data){
+          sharedProperties.setRun(data.id);
+          console.log(sharedProperties.getRun().run1);
+      });
+      if(sharedProperties.getRun().run1 != 1)
+        $location.url(data)
+  }
+
+    $scope.visit = function(data){
+        sharedProperties.setCounter(0);
+      $scope.slide = 'slide-left';
+      $location.url(data)
     }
 
   

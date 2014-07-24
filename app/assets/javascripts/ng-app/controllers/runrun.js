@@ -14,6 +14,7 @@ myApp.controller('RunCtrl', function ($scope, $routeParams, $http, $location, sh
 
     $scope.visit = function(id){    
         sharedProperties.setRun(id);
+        sharedProperties.setHome(0);
         $http.get('/runtype.json', {params: {id: id}}).success(function(data){
             $scope.currentrun = data;
         });

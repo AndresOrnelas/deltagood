@@ -8,6 +8,7 @@ myApp.service('sharedProperties', function () {
         var protocol = {protocol1: "A"};
         var run = {run1: 1};
         var counter = {position: 0};
+        var fromHome = {from: 0};
 
         return {
             getCounter: function(){
@@ -35,6 +36,13 @@ myApp.service('sharedProperties', function () {
             },
             setRun: function(value){
                 run.run1 = value;
+            },
+            getHome: function(){
+                return fromHome;
+            },
+            setHome: function(data){
+                fromHome.from = data;
+                return fromHome;
             }
         };
     });
@@ -47,7 +55,7 @@ myApp.config(function ($routeProvider, $locationProvider) {
             $routeProvider
             .when('/newrun/:protocol', {
                 templateUrl: 'newrun.html',
-                controller: 'BeginCtrl'
+                controller: 'NewRunCtrl'
             });
             $routeProvider
             .when('/newrun/:protocol/:steps', {
