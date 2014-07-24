@@ -9,5 +9,4 @@
 <!-- We need to ve able to save the model to the controller automatically in some way 
 without having to submit -->
 <select ng-model="model.selectedSolutions" ng-options="solution.name + ' ' + (solution.lot || solution.user_id) for solution in solutions"></select>
-{{model.selectedSolutions}}
 

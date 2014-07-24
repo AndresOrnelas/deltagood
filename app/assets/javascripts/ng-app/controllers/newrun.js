@@ -27,6 +27,7 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
         $scope.percent = (($scope.counter+1)/$scope.numsteps)*100;
 
      }
+
     });
 
 
@@ -34,7 +35,7 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
 	//Incubatation.html javascript
     $scope.clock = function(time){
 		document.getElementById("incubatortime").disabled = true;
-    	return $('.clock').FlipClock(time *60, {
+    	return $('.clock').FlipClock($scope.model.incubationTimeValue *60, {
 			countdown: true
 		});
     }
@@ -69,10 +70,16 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
              $scope.getSolutions();
              $scope.getReagents();
           }
-          // not even working yet
+
+          if($scope.protocols.steps[$scope.counter].type === 'incubation'){
+            $scope.model.incubationTimeValue = $scope.protocols.steps[$scope.counter].time;
+            $scope.model.incubationTemp = $scope.protocols.steps[$scope.counter].temp;
+          }
+
           if($scope.protocols.steps[$scope.counter-1].type === 'pipet'){
             $scope.substractQuantity();
           }
+          
       }
 	    else{
         $scope.percent = ($scope.counter/$scope.numsteps)*100;
