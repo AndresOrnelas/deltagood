@@ -154,16 +154,15 @@ if($scope.protocols.inputs[$scope.counter].type === 'mechanical'){
 $scope.startRun = function(data){
       sharedProperties.setCounter(0);
       sharedProperties.setHome(0);
-      $scope.startVoiceRecognition();
       $scope.slide = 'slide-left';
       $http.post('/run.json',{protocolid: $scope.protocols.id, protocolName: $scope.protocols.name, steps: $scope.protocols.steps});
      //saves the run into services to be accessed when i want to update runs
-      $http.get('/lastrun.json', {params: {id: $scope.protocols.id}}).success(function(data){
-          sharedProperties.setRun(data.id);
+      $http.get('/lastrun.json', {params: {id: $scope.protocols.id}}).success(function(data1){
+          sharedProperties.setRun(data1.id);
           console.log(sharedProperties.getRun().run1);
+          $location.url(data)
       });
-      if(sharedProperties.getRun().run1 != 1)
-        $location.url(data)
+      // if(sharedProperties.getRun().run1 != 1) THIS WAS
   }
 
     $scope.visit = function(data){

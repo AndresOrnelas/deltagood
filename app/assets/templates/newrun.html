@@ -1,17 +1,14 @@
 
 <div ng-class="slide">
+ <h1> Fun Activity {{protocol.name}}</h1>
+ <h2> Run {{protocols.counter}} </h2>
 	<div class = "container">
-	<div class="row">
-		<div class="col-xs-12 text-center pagination-centered">
-			<h1> Begin run {{protocols.counter}} of Protocol {{protocols.name}}?</h1>
-		</div>
 		<div class="row">
-			<div class="col-xs-6 pull-left">
-				<a ng-click="visit('/')"><img src="http://alexoliveira.me/Hawaii/images/chevron-left.png" id="chevron"></a>
+			<div class="col-xs-6 text-center pagination-centered">
+				<button class = "btn-large startButton" ng-click = "visit('/')"><span class="glyphicon glyphicon-arrow-left"></span> BACK </button>
 			</div>
-
-			<div class="col-xs-6 pull-right">
-				<a ng-click = "startRun('/newrun/' + protocols.name + '/0')"><img src="http://alexoliveira.me/Hawaii/images/chevron-right.png" id="chevron"></a>
+			<div class ="col-xs-6 text-center pagination-centered">
+				<button class = "btn-large startButton" ng-click = "startRun('/newrun/' + protocols.name + '/0')"> BEGIN <span class="glyphicon glyphicon-arrow-right"></span></button>
 			</div>
 		</div>
 	</div>

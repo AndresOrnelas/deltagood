@@ -6,7 +6,6 @@ myApp.config([
 
 myApp.controller('HomeCtrl', function ($scope, $location, $http, sharedProperties) {
         $scope.slide = 'slide-left'
-        $scope.things = ['Angular', 'Rails 4.1', 'Working', 'Together!!', 'Sara'];
         $scope.go = function(path){
           $scope.slide = 'slide-left';
           $location.url(data)    

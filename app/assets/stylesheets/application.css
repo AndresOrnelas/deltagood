@@ -16,17 +16,24 @@
  */
 
  body { 
-  background: url(/congruent_pentagon.png) no-repeat center center fixed; 
+  background: url(/background10.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+cursor: pointer;
 }
 
 #protocolEntry{
 	color: #FFFFFF;  
 	opacity: 0.8;
-    border-right: 2px dotted #ffffff;
+    border-right: 3px solid #ffffff;
 }
 
 #protocolEntry:hover {
@@ -39,7 +46,7 @@
 	border-radius: 200px 200px 200px 200px;
 -moz-border-radius: 200px 200px 200px 200px;
 -webkit-border-radius: 200px 200px 200px 200px;
-border: 2px double #ffffff;
+border: 1em solid yellow;
 }
 
 .startButton{
@@ -55,8 +62,12 @@ border: 2px double #ffffff;
 	font-family: 'Source Sans Pro', sans-serif;
 	font-size: 80px;
 	margin-bottom: 70px;
-	text-shadow: 3px 2px 0 #ddd,5px 4px 0 #bbb;
+	/*text-shadow: 3px 2px 0 #ddd,5px 4px 0 #bbb;*/
 	opacity: 0.8;
+	font-family: 'Slackey';
+	font-weight: 700;
+	letter-spacing: 0.05em;
+	color: #FF0D00;
 }
 .protocolHeader:hover{
 	opacity: 1;
@@ -64,7 +75,7 @@ border: 2px double #ffffff;
 }
 .protocolName{
 
-	font-family: 'Source Sans Pro', sans-serif;
+	font-family: 'Life Savers';
 	font-weight:normal;
 	font-size: 40px;
 	margin-bottom: 35px;

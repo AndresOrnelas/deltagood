@@ -17,15 +17,16 @@ myApp.controller('RunCtrl', function ($scope, $routeParams, $http, $location, sh
         sharedProperties.setHome(0);
         $http.get('/runtype.json', {params: {id: id}}).success(function(data){
             $scope.currentrun = data;
-        });
-
-        if($scope.currentrun.currentStep <= $scope.currentrun.inputs.length-1){
+            if($scope.currentrun.currentStep <= $scope.currentrun.inputs.length-1){
             $location.url('/newrun/'+ $scope.currentrun.protocolName + '/0');
             sharedProperties.setCounter($scope.currentrun.currentStep);
         }
         else{
             $location.url('/'+ $scope.locate.protocol1 +'/'+ id)
         }
+        });
+
+        
         // //if <100 go to steps
         // //else go to statistics
 
