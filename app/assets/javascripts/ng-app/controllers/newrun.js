@@ -67,12 +67,14 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
     }
     else if($scope.protocols.steps[$scope.counter].type === 'prepare'){
         $scope.values[$scope.counter].usedSolution = $scope.model.selectedSolutions.id;
+    }else if($scope.protocols.steps[$scope.counter].type === 'end'){
+      $scope.values.steps.push($scope.end);
     }
 
     $http.post('/runupdate.json', {values: $scope.values, id: sharedProperties.getRun().run1}); 
     $scope.protocols.steps = $scope.values;
 
-		if($scope.counter !== $scope.numsteps-1){
+		if($scope.counter < $scope.numsteps-1){
 	    	$scope.slide = 'slide-left';
         // $location.url(data);
 
@@ -96,11 +98,20 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
         } 
       }
 	   else{
-        $scope.percent = ($scope.counter/$scope.numsteps)*100;
+      
+      if($scope.protocols.steps[$scope.counter].type === 'end'){
+        $location.url('/' + $scope.protocols.name)
+      } else {
 	      alert('Reached end of steps!');
         // $http.post('/run.json', {params: {values: ["A"], protocol: $scope.protocols}}); 
-        $location.url('/' + $scope.protocols.name)
+        $scope.percent = 100;
+        $scope.counter = sharedProperties.addCounter().position;
+
+        // $location.url('/' + $scope.protocols.name) MOVED TO if end
+        $scope.end = {type: 'end', note: ""};
+        $scope.protocols.steps.push($scope.end);
 	    }
+    }
 
     }
 
