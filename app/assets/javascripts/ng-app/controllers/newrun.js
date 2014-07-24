@@ -104,6 +104,8 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
 	}
 
   $scope.startRun = function(data){
+          $scope.startVoiceRecognition();
+
      sharedProperties.setCounter();
       $scope.slide = 'slide-left';
      // $http.post('/run.json',{params: {values: $scope.values, protocol: $scope.protocols}});
@@ -187,7 +189,7 @@ $scope.createSolution = function(){
    };
  }
 
- window.onload = function(){
+ $scope.startVoiceRecognition = function(){
   if (!('webkitSpeechRecognition' in window)) {
     console.log("No speech recognition. Please upgrade your browser")
   } else {
