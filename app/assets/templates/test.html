@@ -9,18 +9,16 @@ setup to go with ng-repeat -->
 		          <div class="col-xs-12 text-center pagination-centered" style="margin: 10px">
                 <h1 class="protocolName"> Protocol {{protocol.name}} </h1>
                 <img id="protocolImage" src= "http://www.zyvexlabs.com/EIPBNuG/EIPBN2010/GP-2010.png"> 
-
               </div>
 
               <div class="col-xs-12 text-center pagination-centered" style="margin: 10px" >
-                 		 <button  ng-click= "visit('/' +'newrun' + '/'+ protocol.name, protocol.name)" class="btn-large startButton"> Start Run </button><br>
+                <button  ng-click= "visit('/' +'newrun' + '/'+ protocol.name, protocol.name)" class="btn-large startButton"> Start Run </button><br>
               </div>
               <br>
               
               <div class="col-xs-12 text-center pagination-centered" style="margin: 10px">
                       <button class="btn-large startButton" ng-click="visit('/'+ protocol.name, protocol.name)"> Run Log </button> 
               </div>
-
         </div>
     </div>
 </div>
