@@ -1,5 +1,5 @@
 
-<h1 class="protocolHeader">Protocols</h1>
+<h1 class="protocolHeader">Activities</h1>
 <!-- this bootstrap setup might get fucked up when we add more protocols... might need to change the container 
 setup to go with ng-repeat -->
 <div class="row">
@@ -7,17 +7,17 @@ setup to go with ng-repeat -->
         <div class="container-fluid" >
 
 		          <div class="col-xs-12 text-center pagination-centered" style="margin: 10px">
-                <h1 class="protocolName"> Protocol {{protocol.name}} </h1>
-                <img id="protocolImage" src= "http://www.zyvexlabs.com/EIPBNuG/EIPBN2010/GP-2010.png"> 
+                <h1 class="protocolName"> Fun Activity {{protocol.name}} </h1>
+                <img id="protocolImage" src= "http://ffden-2.phys.uaf.edu/212_spring2011.web.dir/Penne_Spuler/baking%20soda%20volcano%20with%20dinos.jpg"> 
               </div>
 
               <div class="col-xs-12 text-center pagination-centered" style="margin: 10px" >
-                <button  ng-click= "visit('/' +'newrun' + '/'+ protocol.name, protocol.name)" class="btn-large startButton"> Start Run </button><br>
+                <button  ng-click= "visit('/' +'newrun' + '/'+ protocol.name, protocol.name)" class="btn-large startButton"> Start Fun </button><br>
               </div>
               <br>
               
               <div class="col-xs-12 text-center pagination-centered" style="margin: 10px">
-                      <button class="btn-large startButton" ng-click="visit('/'+ protocol.name, protocol.name)"> Run Log </button> 
+                      <button class="btn-large startButton" ng-click="visit('/'+ protocol.name, protocol.name)"> Fun Log </button> 
               </div>
         </div>
     </div>
