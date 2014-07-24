@@ -21,10 +21,48 @@
 		</div>
 	</div>
 </div>
+
+<script>
+if (!('webkitSpeechRecognition' in window)) {
+  console.log("No speech recognition. Please upgrade your browser")
+} else {
+  var recognition = new webkitSpeechRecognition();
+  recognition.continuous = true;
+  recognition.interimResults = false;  // false => only sends isFinal results...
+
+  recognition.onstart = function() { console.log("Voice Recognition Starting.") }
+  recognition.onresult = function(event) { 
+    for (var i = event.resultIndex; i < event.results.length; ++i) {
+    	res = event.results[i];
+    	console.log(res);
+		for (var j = 0; j < res.length; j++){
+			console.log(res[j].transcript);
+    		if (res[j].transcript.indexOf("continue") > -1) {
+    			console.log("Voice Recognition Successful: Continue")
+    			document.getElementById('nextstep').click();
+    		} else if(res[j].transcript.indexOf("go back") > -1) {
+    			console.log("Voice Recognition Successful: Go Back");
+    			document.getElementById('goback').click();
+    		}
+    	}
+    	
+    }
+  }
+  recognition.onerror = function(event) { console.log("Error!") }
+  recognition.onend = function() { 
+  	console.log("Voice Recognition Ending. Over and out.") ;
+  }
+  }
+
+window.onload = function(){
+  	recognition.lang = "en-US";
+  	recognition.start();
+}
+</script>
 	
 	<!-- #delete  -->
-	<button ng-click = "lastStep()" class="btn btn-warning btn-large"><span class="glyphicon glyphicon-arrow-left"></span> Last Step </button>
-	<button ng-click= "nextStep()" class="btn btn-primary btn-large"> Next Step <span class="glyphicon glyphicon-arrow-right"></span> </button>
+	<button ng-click = "lastStep()" id="goback" class="btn btn-warning btn-large"><span class="glyphicon glyphicon-arrow-left"></span> Last Step </button>
+	<button ng-click= "nextStep()" id="nextstep" class="btn btn-primary btn-large"> Next Step <span class="glyphicon glyphicon-arrow-right"></span> </button>
 	<button   ng-click = "addNew()" class="btn btn-success btn-large"> <span class="glyphicon glyphicon-plus"></span> Add Run  </button>
 
 
