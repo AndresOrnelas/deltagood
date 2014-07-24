@@ -216,29 +216,48 @@ $scope.createSolution = function(){
    };
  }
 
+$scope.okToGo = true;
  $scope.startVoiceRecognition = function(){
   if (!('webkitSpeechRecognition' in window)) {
     console.log("No speech recognition. Please upgrade your browser")
   } else {
     var recognition = new webkitSpeechRecognition();
     recognition.continuous = true;
-    recognition.interimResults = false;  // false => only sends isFinal results...
+    recognition.interimResults = true;  // false => only sends isFinal results...
 
     recognition.onstart = function() { console.log("Voice Recognition Starting.") }
     recognition.onresult = function(event) { 
-      for (var i = event.resultIndex; i < event.results.length; ++i) {
-        res = event.results[i];
-        console.log(res);
-      for (var j = 0; j < res.length; j++){
-        console.log(res[j].transcript);
-          if (res[j].transcript.indexOf("continue") > -1) {
-            console.log("Voice Recognition Successful: Continue")
-            document.getElementById('nextstep').click();
-          } else if(res[j].transcript.indexOf("go back") > -1) {
-            console.log("Voice Recognition Successful: Go Back");
-            document.getElementById('goback').click();
+      if($scope.okToGo){
+        for (var i = event.resultIndex; i < event.results.length; ++i) {
+          res = event.results[i];
+          console.log(res);
+        for (var j = 0; j < res.length; j++){
+          console.log(res[j].transcript);
+          console.log(res[j].confidence);
+            if (res[j].transcript.indexOf("continue") > -1) {
+              console.log("Voice Recognition Successful: Continue")
+              $scope.okToGo = false;
+              console.log("Let's wait 8 seconds before accepting speech again.");
+              window.setTimeout(function(){
+                $scope.okToGo = true;
+                console.log("Ready. Set. Go... Talk away!");
+              },8000);
+              document.getElementById('nextstep').click();
+            } else if(res[j].transcript.indexOf("go back") > -1) {
+              console.log("Voice Recognition Successful: Go Back");
+              $scope.okToGo = false;
+              console.log("Let's wait 8 seconds before accepting speech again.");
+              window.setTimeout(function(){
+               $scope.okToGo = true;
+                console.log("Ready. Set. Go... Talk away!");
+              },8000);
+              document.getElementById('goback').click();
+
+            }
           }
         }
+      } else {
+        console.log("Request ignored. Waiting for the ok to continue...")
       }
     }
     recognition.onerror = function(event) { console.log("Error!") }
