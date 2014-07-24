@@ -2,10 +2,15 @@
 <h3>{{runInfo.user}}</h3>
 <h3>{{run.created_at}}</h3>
 
+<div>
+	{{note}}
+</div>
+
 <div ng-repeat="step in steps">
 	{{step}}
 </div>
 
+<div ng-click= "view('/')"> Home </div>
 
 
 <!-- Link to this
@@ -23,5 +28,4 @@ protocol id
       t.timestamps
   -->
 
-<div ng-click= "view('/')"> Home </div>
 
