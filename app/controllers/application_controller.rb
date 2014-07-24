@@ -30,7 +30,18 @@ class ApplicationController < ActionController::Base
     respond_with Run.find_by(id: params[:id])
   end
 
+  def runupdate
+    @run = Run.find_by(id: params[:id])
+    @run.update(inputs: params[:values])
+    respond_with(new_run) do |format|
+        format.json { render :json => new_run.as_json }
+      end
+  end
   
+  def lastrun
+    respond_with Run.where(protocol_id: params[:id]).last
+
+  end
 
   def createrun
     puts "hahah"
@@ -40,7 +51,7 @@ class ApplicationController < ActionController::Base
     puts @protocol
     puts "above is the protocol"
     @protocolcounter = @protocol.counter
-    new_run = Run.create(protocol_id: params[:protocolid], counter: @protocolcounter, user_id: current_user.id, inputs: params[:values], currentStep: 10)
+    new_run = Run.create(protocol_id: params[:protocolid], counter: @protocolcounter, user_id: current_user.id, currentStep: 10)
     @protocol.update(counter: (@protocol.counter+1))
     puts "BELOW IS COUNTER AFTER ADDING"
     puts @protocol.counter

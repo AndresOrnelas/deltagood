@@ -55,6 +55,23 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
 
     //General Steps Javascript
     $scope.nextStep = function(){
+    if($scope.protocols.steps[$scope.counter].type === 'mechanical'){
+    }
+    else if($scope.protocols.steps[$scope.counter].type === 'incubation'){
+        $scope.values[$scope.counter].temp = $scope.model.incubationTemp;
+        $scope.values[$scope.counter].time = $scope.model.incubationTimeValue;
+    }
+    else if($scope.protocols.steps[$scope.counter].type === 'pipet'){
+        $scope.values[$scope.counter].usedSolution = $scope.model.selectedSolutions.id;
+        $scope.values[$scope.counter].volume = $scope.model.pipetVolume;
+    }
+    else if($scope.protocols.steps[$scope.counter].type === 'prepare'){
+        $scope.values[$scope.counter].usedSolution = $scope.model.selectedSolutions.id;
+    }
+
+    $http.post('/runupdate.json', {values: $scope.values, id: sharedProperties.getRun().run1}); 
+    $scope.protocols.steps = $scope.values;
+
 		if($scope.counter !== $scope.numsteps-1){
 	    	$scope.slide = 'slide-left';
         // $location.url(data);
@@ -81,9 +98,10 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
 	   else{
         $scope.percent = ($scope.counter/$scope.numsteps)*100;
 	      alert('Reached end of steps!');
-        $http.post('/run.json', {params: {values: ["A"], protocol: $scope.protocols}}); 
+        // $http.post('/run.json', {params: {values: ["A"], protocol: $scope.protocols}}); 
         $location.url('/' + $scope.protocols.name)
 	    }
+
     }
 
     $scope.lastStep = function(){
@@ -111,7 +129,11 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
   $scope.startRun = function(data){
      sharedProperties.setCounter();
       $scope.slide = 'slide-left';
-     $http.post('/run.json',{values: $scope.values, protocolid: $scope.protocols.id});
+     $http.post('/run.json',{protocolid: $scope.protocols.id});
+     //saves the run into services to be accessed when i want to update runs
+    $http.get('/lastrun.json', {params: {id: $scope.protocols.id}}).success(function(data){
+        sharedProperties.setRun(data.id);
+    });
       $location.url(data)
   }
 
