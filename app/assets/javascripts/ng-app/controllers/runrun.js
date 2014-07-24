@@ -18,7 +18,7 @@ myApp.controller('RunCtrl', function ($scope, $routeParams, $http, $location, sh
             $scope.currentrun = data;
         });
 
-        if($scope.currentrun.currentStep < $scope.currentrun.inputs.length-1){
+        if($scope.currentrun.currentStep <= $scope.currentrun.inputs.length-1){
             $location.url('/newrun/'+ $scope.currentrun.protocolName + '/0');
             sharedProperties.setCounter($scope.currentrun.currentStep);
         }

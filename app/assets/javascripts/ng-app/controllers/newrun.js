@@ -17,7 +17,6 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
     // $http.get('/protocoltype.json', { params: {name: $scope.locate.protocol1}}).success(function(data){
       
     // if the currentStep is 0
-    if($scope.currentrun.currentStep === 0){
       $http.get('/protocoltype.json', { params: {name: $scope.locate.protocol1}}).success(function(data){
         //General
         $scope.protocols = data;
@@ -31,26 +30,11 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
          	$scope.imagelength = $scope.imagelinks.length;
           $scope.percent = (($scope.counter+1)/$scope.numsteps)*100;
         }
+        $scope.prepareEverything();
+        
         //ADD IF STATEMENT IF WE START ON A PIPET OR PREPARE STEP
       });
-    }
-    else{
-      $http.get('/protocoltype.json', { params: {name: $scope.locate.protocol1}}).success(function(data){
-        //General
-        $scope.protocols = data;
-        $scope.numsteps = $scope.protocols.steps.length;
-        $scope.values = $scope.protocols.steps;
-
-        //Mechanical
-        if($scope.protocols.steps[$scope.counter].type == 'mechanical'){
-          $scope.imagelinks = $scope.protocols.steps[$scope.counter].images;
-          $scope.imglink = $scope.imagelinks[$scope.imgcounter];
-          $scope.imagelength = $scope.imagelinks.length;
-          $scope.percent = (($scope.counter+1)/$scope.numsteps)*100;
-        }
-        //ADD IF STATEMENT IF WE START ON A PIPET OR PREPARE STEP
-      });
-    }
+    
    // else
     //  get request from /runtype and set $scope.protocols = run
 
@@ -101,7 +85,19 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
 	      $scope.counter = sharedProperties.addCounter().position;
         $scope.percent = (($scope.counter+1)/$scope.numsteps)*100;
 
-        if($scope.protocols.steps[$scope.counter].type === 'pipet'){
+        $scope.prepareEverything();
+      }
+	   else{
+        $scope.percent = ($scope.counter/$scope.numsteps)*100;
+	      alert('Reached end of steps!');
+        // $http.post('/run.json', {params: {values: ["A"], protocol: $scope.protocols}}); 
+        $location.url('/' + $scope.protocols.name)
+	    }
+
+    }
+
+    $scope.prepareEverything = function(){
+      if($scope.protocols.steps[$scope.counter].type === 'pipet'){
             //Pipet if statement
             $scope.getSolutions();
         }
@@ -116,16 +112,7 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
         if($scope.protocols.steps[$scope.counter-1].type === 'pipet'){
             $scope.substractQuantity();
         } 
-      }
-	   else{
-        $scope.percent = ($scope.counter/$scope.numsteps)*100;
-	      alert('Reached end of steps!');
-        // $http.post('/run.json', {params: {values: ["A"], protocol: $scope.protocols}}); 
-        $location.url('/' + $scope.protocols.name)
-	    }
-
     }
-
     $scope.lastStep = function(){
     	if($scope.counter !== 0){
    			$scope.slide = 'slide-right';
