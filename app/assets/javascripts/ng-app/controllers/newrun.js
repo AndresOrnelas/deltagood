@@ -241,7 +241,7 @@ $scope.okToGo = true;
               window.setTimeout(function(){
                 $scope.okToGo = true;
                 console.log("Ready. Set. Go... Talk away!");
-              },8000);
+              },5000);
               document.getElementById('nextstep').click();
             } else if(res[j].transcript.indexOf("go back") > -1) {
               console.log("Voice Recognition Successful: Go Back");
@@ -250,7 +250,7 @@ $scope.okToGo = true;
               window.setTimeout(function(){
                $scope.okToGo = true;
                 console.log("Ready. Set. Go... Talk away!");
-              },8000);
+              },5000);
               document.getElementById('goback').click();
 
             }
