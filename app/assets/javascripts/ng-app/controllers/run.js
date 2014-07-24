@@ -12,8 +12,20 @@ myApp.controller('RunCtrl', function ($scope, $routeParams, $http, $location, sh
     	$scope.protocols = data;
     });
 
-    $scope.visit = function(data, id){    
+    $scope.visit = function(id){    
         sharedProperties.setRun(id);
-        $location.url(data)
+        $http.get('/runtype.json', {params: {id: id}}).success(function(data){
+            $scope.currentrun = data;
+        });
+
+        if($scope.currentrun.currentStep < $scope.currentrun.inputs.length-1){
+            $location.url('/newrun'+ 
+        }
+        else{
+            $location.url('/'+ locate.protocol1 +'/'+ run.id)
+
+        }
+        //if <100 go to steps
+        //else go to statistics
     }
 });

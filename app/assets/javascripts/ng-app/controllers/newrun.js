@@ -6,15 +6,20 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
     $scope.counter = sharedProperties.getCounter().position;
     $scope.count = $scope.counter;
     $scope.imgcounter = 0;
-    $scope.values = [];
     $scope.imagelength = 0;
     $scope.disable = "";
     $scope.locate = sharedProperties.getProtocol();
     // Try to see what would happen if the first step is not mechanical
+
+    // $http.get('/runtype.json', { params: {name: $scope.locate.protocol1}}).success(function(data){
+      
+    // if the currentStep is 0
     $http.get('/protocoltype.json', { params: {name: $scope.locate.protocol1}}).success(function(data){
       //General
       $scope.protocols = data;
      	$scope.numsteps = $scope.protocols.steps.length;
+      $scope.values = $scope.protocols.steps;
+
      	//Mechanical
       if($scope.protocols.steps[$scope.counter].type == 'mechanical'){
        	$scope.imagelinks = $scope.protocols.steps[$scope.counter].images;
@@ -22,7 +27,10 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
        	$scope.imagelength = $scope.imagelinks.length;
         $scope.percent = (($scope.counter+1)/$scope.numsteps)*100;
       }
+      //ADD IF STATEMENT IF WE START ON A PIPET OR PREPARE STEP
     });
+   // else
+    //  get request from /runtype and set $scope.protocols = run
 
 	//Incubatation.html javascript
     $scope.clock = function(time){
@@ -50,6 +58,7 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
 		if($scope.counter !== $scope.numsteps-1){
 	    	$scope.slide = 'slide-left';
         // $location.url(data);
+
 	      $scope.counter = sharedProperties.addCounter().position;
         $scope.percent = (($scope.counter+1)/$scope.numsteps)*100;
 
@@ -57,21 +66,17 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
             //Pipet if statement
             $scope.getSolutions();
         }
-
         if($scope.protocols.steps[$scope.counter].type === 'prepare'){
              $scope.getSolutions();
              $scope.getReagents();
         }
-
         if($scope.protocols.steps[$scope.counter].type === 'incubation'){
             $scope.model.incubationTimeValue = $scope.protocols.steps[$scope.counter].time;
             $scope.model.incubationTemp = $scope.protocols.steps[$scope.counter].temp;
         }
-
         if($scope.protocols.steps[$scope.counter-1].type === 'pipet'){
             $scope.substractQuantity();
-        }
-          
+        } 
       }
 	   else{
         $scope.percent = ($scope.counter/$scope.numsteps)*100;
@@ -106,7 +111,7 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
   $scope.startRun = function(data){
      sharedProperties.setCounter();
       $scope.slide = 'slide-left';
-     // $http.post('/run.json',{params: {values: $scope.values, protocol: $scope.protocols}});
+     $http.post('/run.json',{values: $scope.values, protocolid: $scope.protocols.id});
       $location.url(data)
   }
 
