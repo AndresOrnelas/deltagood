@@ -17,8 +17,8 @@ myApp.service('sharedProperties', function () {
                 counter.position = counter.position + 1;
                 return counter;
             },
-            setCounter: function(){
-                counter.position = 0;
+            setCounter: function(data){
+                counter.position = data;
             },
             changeCounter: function(data){
                 counter.position = counter.position + data;
@@ -47,7 +47,7 @@ myApp.config(function ($routeProvider, $locationProvider) {
             $routeProvider
             .when('/newrun/:protocol', {
                 templateUrl: 'newrun.html',
-                controller: 'NewRunCtrl'
+                controller: 'BeginCtrl'
             });
             $routeProvider
             .when('/newrun/:protocol/:steps', {
