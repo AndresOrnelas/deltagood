@@ -339,3 +339,11 @@ border: 2px double #ffffff;
  	padding: 3px;
 
  }
+
+ #chevron {
+ 	opacity: .7;
+ }
+
+ #chevron:hover {
+ 	opacity: 1;
+ }
