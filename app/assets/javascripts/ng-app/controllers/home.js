@@ -18,7 +18,7 @@ myApp.controller('HomeCtrl', function ($scope, $location, $http, sharedPropertie
 
         //Activated when we want to see Run History
         $scope.visit = function(data, name){
-          $scope.slide = 'slide-right';
+          $scope.slide = 'slide-left';
           sharedProperties.setHome(1);
           sharedProperties.setProtocol(name)
           if(sharedProperties.getHome().from == 1){

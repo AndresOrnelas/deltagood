@@ -1,7 +1,23 @@
-<h1> {{run.protocol}}, Run {{run.id}} </h1>
+<h1> Run Statistics </h1>
+<h2> Protocol {{protocols.name}}, Run {{run.id}} </h2>
 <h3>{{runInfo.user}}</h3>
 <h3>{{run.created_at}}</h3>
 
+<div ng-repeat="step in run.items">
+        <div class="col-xs-12" ng-show="step.type == 'mechanical'" style="margin: 10px">
+          <h1> A </h1>
+        </div>
+
+        <div class="col-xs-12" ng-show="step.type == 'pipet'" style="margin: 10px">
+          <h1> B </h1>
+        </div>
+        <div class="col-xs-12" ng-show="step.type == 'prepare'" style="margin: 10px">
+          <h1> C </h1>
+        </div>
+        <div class="col-xs-12" ng-show="step.type == 'incubation'" style="margin: 10px">
+          <h1> D </h1>
+        </div>
+    </div>
 <div>
 	{{note}}
 </div>
