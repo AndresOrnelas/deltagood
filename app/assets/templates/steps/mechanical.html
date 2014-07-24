@@ -1,13 +1,11 @@
 <div class="container">
- <h3>Protocol {{protocols.name}},  Step #{{counter+1}} </h3>
-
-<h1>{{protocols.steps[counter].name}}<h1>
-
-<div class = "mechanicalimgbox"> 
-<!-- This image needs to be uploaded by user, go to another website -->
-<div ng-class= "slide" >
-	<img style="width: 200px; height: 200px;"src="{{imglink}}"> <br>
-	<button ng-click = "imgBack()" class="btn btn-small">Back</button>
-	<button ng-click= "imgMove()" class="btn btn-small"> Fwrd </button>
-</div>		
+	<h3>Protocol {{protocols.name}},  Step #{{counter+1}} </h3>
+	<h1>{{protocols.steps[counter].name}}<h1>
+	<div class = "mechanicalimgbox"> 
+    <div ng-class= "slide" >
+	 	 <img style="width: 200px; height: 200px;"src="{{imglink}}"> <br>
+	  	<button ng-click = "imgBack()" class="btn btn-small">Back</button>
+	  	<button ng-click= "imgMove()" class="btn btn-small"> Fwrd </button>
+  	</div>		
+  </div>
 </div>
