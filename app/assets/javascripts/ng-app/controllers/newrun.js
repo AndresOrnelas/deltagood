@@ -138,6 +138,8 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
 	}
 
   $scope.startRun = function(data){
+          $scope.startVoiceRecognition();
+
      sharedProperties.setCounter();
       $scope.slide = 'slide-left';
      $http.post('/run.json',{protocolid: $scope.protocols.id});
@@ -223,5 +225,39 @@ $scope.createSolution = function(){
      // //WE NEED TO DELAY THIS TO COME AFTER PREVIOUS CALL!
      // $scope.model.selectedSolutions = $scope.solutions[$scope.solutions.length-1];
    };
+ }
+
+ $scope.startVoiceRecognition = function(){
+  if (!('webkitSpeechRecognition' in window)) {
+    console.log("No speech recognition. Please upgrade your browser")
+  } else {
+    var recognition = new webkitSpeechRecognition();
+    recognition.continuous = true;
+    recognition.interimResults = false;  // false => only sends isFinal results...
+
+    recognition.onstart = function() { console.log("Voice Recognition Starting.") }
+    recognition.onresult = function(event) { 
+      for (var i = event.resultIndex; i < event.results.length; ++i) {
+        res = event.results[i];
+        console.log(res);
+      for (var j = 0; j < res.length; j++){
+        console.log(res[j].transcript);
+          if (res[j].transcript.indexOf("continue") > -1) {
+            console.log("Voice Recognition Successful: Continue")
+            document.getElementById('nextstep').click();
+          } else if(res[j].transcript.indexOf("go back") > -1) {
+            console.log("Voice Recognition Successful: Go Back");
+            document.getElementById('goback').click();
+          }
+        }
+      }
+    }
+    recognition.onerror = function(event) { console.log("Error!") }
+    recognition.onend = function() { 
+      console.log("Voice Recognition Ending. Over and out.") ;
+    }
+  }
+    recognition.lang = "en-US";
+    recognition.start();
  }
 });
