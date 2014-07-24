@@ -317,3 +317,21 @@ border: 2px double #ffffff;
   margin-bottom: 15px;
   padding: 7px 9px;
 }
+
+#wrapper {
+    padding-left: 70px;
+    transition: all .4s ease 0s;
+    height: 100%
+}
+
+
+ #sidebar {
+ 	position: fixed;
+ 	background-color: black;
+ 	left: 0;
+ 	top: 0;
+ 	z-index: 1000; 
+ 	height: 100%;
+ 	padding: 3px;
+
+ }

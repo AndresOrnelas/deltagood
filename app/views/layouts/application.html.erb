@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>AngularRails</title>
+  <title>LabTop</title>
+  <link rel="icon" 
+      type="image/png" 
+      href="http://www.clker.com/cliparts/i/s/o/X/6/T/empty-beaker-md.png">
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application', controller_name %>
   <%= csrf_meta_tags %>
@@ -9,11 +12,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
 <!-- <link href="app/assets/stylesheets/flipclock.css" rel="stylesheet" type="text/css"> --></head>
-<body>
-  <%= render 'layouts/header' %>
+  <body>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-1">
+      <div id="sidebar">
+       <%= render 'layouts/header' %>
+      </div>
+    </div>
+  <div class="col-xs-11">
    <%= render 'layouts/messages' %>
-  <div id="user_nav">
-    <% if user_signed_in? %>	
+  <!-- <div id="user_nav"> -->
+  <div>
+    <% if user_signed_in? %>
 
      <!--  Signed in as <%= current_user.email %>. Not you?  
       <%= link_to "   Sign out", destroy_user_session_path, :method => :delete %> -->
@@ -26,6 +37,8 @@
        <%= yield %>
      <% end %>
   </div>
+  </div>
 
 </body>
 </html>
+
