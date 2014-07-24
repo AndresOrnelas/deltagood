@@ -3,29 +3,33 @@
 <h3>{{run.created_at}}</h3>
 
 <div>
-	{{note}}
+    {{note}}
 </div>
 
 <div ng-repeat="step in steps">
-	{{step}}
+    <div class="container">
+   <div class="row" ng-show="step.type == 'prepare'">
+     <div class="col-xs-4">
+       <h3>Step {{(steps.indexOf(step)+1)}}: {{step.name}}</h3>
+     </div>
+     <div class="col-xs-4">
+     <p> PLZ WORK </p>
+     </div>
+     <div class="col-xs-4">
+     <p> PLZ WORK </p>
+     </div>
+   </div>
+   <div ng-show="step.type == 'pipet'">
+   <p> PLZ WORK Pipet</p>
+   </div>
+   <div ng-show="step.type == 'incubate'">
+   <p> PLZ WORK INC</p>
+   </div>
+ </div>
+
+
+ {{step}}
+
 </div>
 
-<div ng-click= "view('/')"> Home </div>
-
-
-<!-- Link to this
-step array
-protocol id
-
-      t.integer :counter
-      t.text :inputs
-      //////////////////////////t.text :times
-      //////////////////////////t.text :changeList
-      t.belongs_to :user
-      t.belongs_to :protocol
-      t.integer :currentStep
-
-      t.timestamps
-  -->
-
-
+<div ng-click= "view('/')"> Home </div><h1> {{run.protocol}}, Run {{run.id}} </h1>
