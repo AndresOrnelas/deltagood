@@ -52,11 +52,15 @@ border: 2px double #ffffff;
 }
 
 .protocolHeader{
-	color: #2B65EC;
 	font-family: 'Source Sans Pro', sans-serif;
-	font-weight:normal;
-	font-size: 60px;
+	font-size: 80px;
 	margin-bottom: 70px;
+	text-shadow: 3px 2px 0 #ddd,5px 4px 0 #bbb;
+	opacity: 0.8;
+}
+.protocolHeader:hover{
+	opacity: 1;
+	font-size: 82px;	
 }
 .protocolName{
 
