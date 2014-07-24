@@ -1,3 +1,27 @@
-<h1> {{run.id}} </h1>
+<h1> {{run.protocol}}, Run {{run.id}} </h1>
+<h3>{{runInfo.user}}</h3>
+<h3>{{run.created_at}}</h3>
+
+<div ng-repeat="step in steps">
+	{{step}}
+</div>
+
+
+
+<!-- Link to this
+step array
+protocol id
+
+      t.integer :counter
+      t.text :inputs
+      //////////////////////////t.text :times
+      //////////////////////////t.text :changeList
+      t.belongs_to :user
+      t.belongs_to :protocol
+      t.integer :currentStep
+
+      t.timestamps
+  -->
 
 <div ng-click= "view('/')"> Home </div>
+
