@@ -10,33 +10,28 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
     $scope.disable = "";
     $scope.locate = sharedProperties.getProtocol();
     // Try to see what would happen if the first step is not mechanical
-
+    console.log("ANDRES")
+    console.log(sharedProperties.getRun().run1);
     $http.get('/runtype.json', { params: {id: sharedProperties.getRun().run1}}).success(function(data){
-      $scope.currentrun = data;
-    });
-    // $http.get('/protocoltype.json', { params: {name: $scope.locate.protocol1}}).success(function(data){
-      
-    // if the currentStep is 0
-      $http.get('/protocoltype.json', { params: {name: $scope.locate.protocol1}}).success(function(data){
-        //General
-        $scope.protocols = data;
-       	$scope.numsteps = $scope.protocols.steps.length;
-        $scope.values = $scope.protocols.steps;
+      console.log("i hate this")
+      $scope.protocols = data;
+      console.log($scope.protocols);
 
-       	//Mechanical
-        if($scope.protocols.steps[$scope.counter].type == 'mechanical'){
-         	$scope.imagelinks = $scope.protocols.steps[$scope.counter].images;
-         	$scope.imglink = $scope.imagelinks[$scope.imgcounter];
-         	$scope.imagelength = $scope.imagelinks.length;
+      $scope.numsteps = $scope.protocols.inputs.length;
+        $scope.values = $scope.protocols.inputs;
+
+        //Mechanical
+        if($scope.protocols.inputs[$scope.counter].type == 'mechanical'){
+          $scope.imagelinks = $scope.protocols.inputs[$scope.counter].images;
+          $scope.imglink = $scope.imagelinks[$scope.imgcounter];
+          $scope.imagelength = $scope.imagelinks.length;
           $scope.percent = (($scope.counter+1)/$scope.numsteps)*100;
         }
         $scope.prepareEverything();
         
-        //ADD IF STATEMENT IF WE START ON A PIPET OR PREPARE STEP
-      });
-    
-   // else
-    //  get request from /runtype and set $scope.protocols = run
+
+
+    });
 
 	//Incubatation.html javascript
     $scope.clock = function(time){
@@ -61,22 +56,22 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
 
     //General Steps Javascript
     $scope.nextStep = function(){
-    if($scope.protocols.steps[$scope.counter].type === 'mechanical'){
+    if($scope.protocols.inputs[$scope.counter].type === 'mechanical'){
     }
-    else if($scope.protocols.steps[$scope.counter].type === 'incubation'){
+    else if($scope.protocols.inputs[$scope.counter].type === 'incubation'){
         $scope.values[$scope.counter].temp = $scope.model.incubationTemp;
         $scope.values[$scope.counter].time = $scope.model.incubationTimeValue;
     }
-    else if($scope.protocols.steps[$scope.counter].type === 'pipet'){
+    else if($scope.protocols.inputs[$scope.counter].type === 'pipet'){
         $scope.values[$scope.counter].usedSolution = $scope.model.selectedSolutions.id;
         $scope.values[$scope.counter].volume = $scope.model.pipetVolume;
     }
-    else if($scope.protocols.steps[$scope.counter].type === 'prepare'){
+    else if($scope.protocols.inputs[$scope.counter].type === 'prepare'){
         $scope.values[$scope.counter].usedSolution = $scope.model.selectedSolutions.id;
     }
 
     $http.post('/runupdate.json', {values: $scope.values, id: sharedProperties.getRun().run1, currentStep: $scope.counter+1}); 
-    $scope.protocols.steps = $scope.values;
+    $scope.protocols.inputs = $scope.values;
 
 		if($scope.counter !== $scope.numsteps-1){
 	    	$scope.slide = 'slide-left';
@@ -91,32 +86,34 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
         $scope.percent = ($scope.counter/$scope.numsteps)*100;
 	      alert('Reached end of steps!');
         // $http.post('/run.json', {params: {values: ["A"], protocol: $scope.protocols}}); 
-        $location.url('/' + $scope.protocols.name)
+        $location.url('/' + $scope.protocols.protocolName)
 	    }
 
     }
 
     $scope.prepareEverything = function(){
-      if($scope.protocols.steps[$scope.counter].type === 'pipet'){
+      if($scope.protocols.inputs[$scope.counter].type === 'pipet'){
             //Pipet if statement
             $scope.getSolutions();
         }
-        if($scope.protocols.steps[$scope.counter].type === 'prepare'){
+        if($scope.protocols.inputs[$scope.counter].type === 'prepare'){
              $scope.getSolutions();
              $scope.getReagents();
         }
-        if($scope.protocols.steps[$scope.counter].type === 'incubation'){
-            $scope.model.incubationTimeValue = $scope.protocols.steps[$scope.counter].time;
-            $scope.model.incubationTemp = $scope.protocols.steps[$scope.counter].temp;
+        if($scope.protocols.inputs[$scope.counter].type === 'incubation'){
+            $scope.model.incubationTimeValue = $scope.protocols.inputs[$scope.counter].time;
+            $scope.model.incubationTemp = $scope.protocols.inputs[$scope.counter].temp;
         }
-        if($scope.protocols.steps[$scope.counter-1].type === 'pipet'){
-            $scope.substractQuantity();
-        } 
+        if($scope.counter-1 >= 0){
+          if($scope.protocols.inputs[$scope.counter-1].type === 'pipet'){
+              $scope.substractQuantity();
+          } 
+        }
     }
     $scope.lastStep = function(){
     	if($scope.counter !== 0){
    			$scope.slide = 'slide-right';
-      		$scope.counter = $scope.counter - 1;
+      		$scope.counter = sharedProperties.changeCounter(-1);
       	}
     }
 
@@ -126,40 +123,20 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
     	$location.url(data)
     }
 
-    $scope.addNew = function(){
-	  	$http.post('/run.json', {params: {values: $scope.values, protocol: $scope.protocols}}); 
-	    $scope.protocols.counter = $scope.protocols.counter + 1;
-      //need to update db with +1 to protocol counter
-      $scope.slide = 'slide-right';
-	  	$location.url('/')  
-	    $scope.slide = 'slide-left';
-	}
-
-  $scope.startRun = function(data){
-          $scope.startVoiceRecognition();
-
-     sharedProperties.setCounter(0);
-      $scope.slide = 'slide-left';
-     $http.post('/run.json',{protocolid: $scope.protocols.id, protocolName: $scope.protocols.name});
-     //saves the run into services to be accessed when i want to update runs
-    $http.get('/lastrun.json', {params: {id: $scope.protocols.id}}).success(function(data){
-        sharedProperties.setRun(data.id);
-    });
-      $location.url(data)
-  }
+  
 
 // ----------------------------------Pipet functions---------------------------------------------------------
   $scope.getSolutions = function(){
     var params = {
       params: {
-        solution: $scope.protocols.steps[$scope.counter].solution
+        solution: $scope.protocols.inputs[$scope.counter].solution
       }
     };
     $http.get('/solutions.json', params).success(function(data){
       $scope.solutions = data;
       console.log($scope.solutions)
       $scope.model.selectedSolutions = $scope.solutions[0];
-      $scope.model.pipetVolume = $scope.protocols.steps[$scope.counter].volume;
+      $scope.model.pipetVolume = $scope.protocols.inputs[$scope.counter].volume;
     });
   }
 
@@ -181,16 +158,16 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
 // ------------------------------------------------Prepate solution------------------------------------------
 
   $scope.getReagents = function(){
-    $scope.model.quantityMadeSolution = $scope.protocols.steps[$scope.counter].suggestedQuantity;
-    $scope.model.proportion1 = $scope.protocols.steps[$scope.counter].proportion1;
-    $scope.model.proportion2 = $scope.protocols.steps[$scope.counter].proportion2;
+    $scope.model.quantityMadeSolution = $scope.protocols.inputs[$scope.counter].suggestedQuantity;
+    $scope.model.proportion1 = $scope.protocols.inputs[$scope.counter].proportion1;
+    $scope.model.proportion2 = $scope.protocols.inputs[$scope.counter].proportion2;
 
-    $http.get('/solutions.json', { params: {solution: $scope.protocols.steps[$scope.counter].reagent1}}).success(function(reagents1){
+    $http.get('/solutions.json', { params: {solution: $scope.protocols.inputs[$scope.counter].reagent1}}).success(function(reagents1){
       $scope.model.reagents1 = reagents1;
       $scope.model.selectedReagents1 = $scope.model.reagents1[0];
      });
 
-    $http.get('/solutions.json', { params: {solution: $scope.protocols.steps[$scope.counter].reagent2}}).success(function(reagents2){
+    $http.get('/solutions.json', { params: {solution: $scope.protocols.inputs[$scope.counter].reagent2}}).success(function(reagents2){
       $scope.model.reagents2 = reagents2;
       $scope.model.selectedReagents2 = $scope.model.reagents2[0];
     });
@@ -210,7 +187,7 @@ $scope.createSolution = function(){
      });
 
      var params = {
-       solution: $scope.protocols.steps[$scope.counter].solution,
+       solution: $scope.protocols.inputs[$scope.counter].solution,
        volume: $scope.model.quantityMadeSolution * ($scope.model.proportion1 + $scope.model.proportion2),
        reagents: [$scope.model.selectedReagents1.id, $scope.model.selectedReagents2.id]
      };

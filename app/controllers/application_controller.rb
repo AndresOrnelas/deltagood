@@ -47,7 +47,7 @@ class ApplicationController < ActionController::Base
     @protocol = Protocol.find_by(id: params[:protocolid])
     @protocolcounter = @protocol.counter
     new_run = Run.create(protocol_id: params[:protocolid], counter: @protocolcounter, 
-      user_id: current_user.id, currentStep: 0, protocolName: params[:protocolName])
+      user_id: current_user.id, currentStep: 0, protocolName: params[:protocolName], inputs: params[:steps])
     @protocol.update(counter: (@protocol.counter+1))
     respond_with(new_run) do |format|
         format.json { render :json => new_run.as_json }

@@ -47,7 +47,7 @@ myApp.config(function ($routeProvider, $locationProvider) {
             $routeProvider
             .when('/newrun/:protocol', {
                 templateUrl: 'newrun.html',
-                controller: 'NewRunCtrl'
+                controller: 'BeginCtrl'
             });
             $routeProvider
             .when('/newrun/:protocol/:steps', {

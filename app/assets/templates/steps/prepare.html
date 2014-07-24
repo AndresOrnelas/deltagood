@@ -1,8 +1,8 @@
 <h1> Prepare solution </h1>
-<h2> Procedure: Protocol {{protocols.name}} </h2>
+<h2> Procedure: Protocol {{protocols.protocolName}} </h2>
 <h2> Step #{{counter+1}} </h2>
 
-<div class="box">{{protocols.steps[counter].name}}</div>
+<div class="box">{{protocols.inputs[counter].name}}</div>
     <div ng-hide = "model.selectedSolutions == null">
         <select ng-model="model.selectedSolutions" ng-options="solution.name + ' ' + (solution.lot || solution.user_id) for solution in solutions">
         <option value = ""> Create solution </option>
