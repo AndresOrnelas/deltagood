@@ -67,8 +67,6 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
     }
     else if($scope.protocols.steps[$scope.counter].type === 'prepare'){
         $scope.values[$scope.counter].usedSolution = $scope.model.selectedSolutions.id;
-    }else if($scope.protocols.steps[$scope.counter].type === 'end'){
-      $scope.values.steps.push($scope.end);
     }
 
     $http.post('/runupdate.json', {values: $scope.values, id: sharedProperties.getRun().run1}); 

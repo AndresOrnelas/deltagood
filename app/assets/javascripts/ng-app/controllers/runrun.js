@@ -26,7 +26,7 @@ myApp.controller('RunCtrl', function ($scope, $routeParams, $http, $location, sh
         // }
         // //if <100 go to steps
         // //else go to statistics
-        $location.url('/'+ locate.protocol1 +'/'+ id)
+        $location.url('/'+ $scope.locate.protocol1 +'/'+ id)
 
     }
 });
