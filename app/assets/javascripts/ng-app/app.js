@@ -17,8 +17,8 @@ myApp.service('sharedProperties', function () {
                 counter.position = counter.position + 1;
                 return counter;
             },
-            setCounter: function(){
-                counter.position = 0;
+            setCounter: function(data){
+                counter.position = data;
             },
             changeCounter: function(data){
                 counter.position = counter.position + data;

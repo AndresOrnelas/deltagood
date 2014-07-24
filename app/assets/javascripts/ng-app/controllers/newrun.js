@@ -11,24 +11,46 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
     $scope.locate = sharedProperties.getProtocol();
     // Try to see what would happen if the first step is not mechanical
 
-    // $http.get('/runtype.json', { params: {name: $scope.locate.protocol1}}).success(function(data){
+    $http.get('/runtype.json', { params: {id: sharedProperties.getRun().run1}}).success(function(data){
+      $scope.currentrun = data;
+    });
+    // $http.get('/protocoltype.json', { params: {name: $scope.locate.protocol1}}).success(function(data){
       
     // if the currentStep is 0
-    $http.get('/protocoltype.json', { params: {name: $scope.locate.protocol1}}).success(function(data){
-      //General
-      $scope.protocols = data;
-     	$scope.numsteps = $scope.protocols.steps.length;
-      $scope.values = $scope.protocols.steps;
+    if($scope.currentrun.currentStep === 0){
+      $http.get('/protocoltype.json', { params: {name: $scope.locate.protocol1}}).success(function(data){
+        //General
+        $scope.protocols = data;
+       	$scope.numsteps = $scope.protocols.steps.length;
+        $scope.values = $scope.protocols.steps;
 
-     	//Mechanical
-      if($scope.protocols.steps[$scope.counter].type == 'mechanical'){
-       	$scope.imagelinks = $scope.protocols.steps[$scope.counter].images;
-       	$scope.imglink = $scope.imagelinks[$scope.imgcounter];
-       	$scope.imagelength = $scope.imagelinks.length;
-        $scope.percent = (($scope.counter+1)/$scope.numsteps)*100;
-      }
-      //ADD IF STATEMENT IF WE START ON A PIPET OR PREPARE STEP
-    });
+       	//Mechanical
+        if($scope.protocols.steps[$scope.counter].type == 'mechanical'){
+         	$scope.imagelinks = $scope.protocols.steps[$scope.counter].images;
+         	$scope.imglink = $scope.imagelinks[$scope.imgcounter];
+         	$scope.imagelength = $scope.imagelinks.length;
+          $scope.percent = (($scope.counter+1)/$scope.numsteps)*100;
+        }
+        //ADD IF STATEMENT IF WE START ON A PIPET OR PREPARE STEP
+      });
+    }
+    else{
+      $http.get('/protocoltype.json', { params: {name: $scope.locate.protocol1}}).success(function(data){
+        //General
+        $scope.protocols = data;
+        $scope.numsteps = $scope.protocols.steps.length;
+        $scope.values = $scope.protocols.steps;
+
+        //Mechanical
+        if($scope.protocols.steps[$scope.counter].type == 'mechanical'){
+          $scope.imagelinks = $scope.protocols.steps[$scope.counter].images;
+          $scope.imglink = $scope.imagelinks[$scope.imgcounter];
+          $scope.imagelength = $scope.imagelinks.length;
+          $scope.percent = (($scope.counter+1)/$scope.numsteps)*100;
+        }
+        //ADD IF STATEMENT IF WE START ON A PIPET OR PREPARE STEP
+      });
+    }
    // else
     //  get request from /runtype and set $scope.protocols = run
 
@@ -69,7 +91,7 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
         $scope.values[$scope.counter].usedSolution = $scope.model.selectedSolutions.id;
     }
 
-    $http.post('/runupdate.json', {values: $scope.values, id: sharedProperties.getRun().run1}); 
+    $http.post('/runupdate.json', {values: $scope.values, id: sharedProperties.getRun().run1, currentStep: $scope.counter+1}); 
     $scope.protocols.steps = $scope.values;
 
 		if($scope.counter !== $scope.numsteps-1){
@@ -112,7 +134,7 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
     }
 
     $scope.visit = function(data){
-      sharedProperties.setCounter();
+      sharedProperties.setCounter(0);
     	$scope.slide = 'slide-left';
     	$location.url(data)
     }
@@ -129,9 +151,9 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
   $scope.startRun = function(data){
           $scope.startVoiceRecognition();
 
-     sharedProperties.setCounter();
+     sharedProperties.setCounter(0);
       $scope.slide = 'slide-left';
-     $http.post('/run.json',{protocolid: $scope.protocols.id});
+     $http.post('/run.json',{protocolid: $scope.protocols.id, protocolName: $scope.protocols.name});
      //saves the run into services to be accessed when i want to update runs
     $http.get('/lastrun.json', {params: {id: $scope.protocols.id}}).success(function(data){
         sharedProperties.setRun(data.id);
