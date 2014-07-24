@@ -14,6 +14,10 @@ class ApplicationController < ActionController::Base
     respond_with Protocol.find_by(name: params[:name])
   end
 
+  def protocolid
+    respond_with Protocol.find_by(id: params[:id])
+  end
+
   def protocol
     respond_with Protocol.all
   end
