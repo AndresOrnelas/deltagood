@@ -1,4 +1,4 @@
-myApp.controller('NewCtrl', function ($scope, $location,  $http, sharedProperties) {
+myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProperties) {
       
     //Initializing variables
     $scope.model = {};
