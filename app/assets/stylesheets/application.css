@@ -15,6 +15,28 @@
  *= require bootstrap
  */
 
+ .paperBack{
+ 	background-image: url('/stationary.png');
+ 	background-size: fill;
+ 	background-position: center;
+ 	background-color: gray;
+ }
+
+ .step{
+ 	position: relative;
+ 	border-style: solid;
+ 	border-color: orange;
+ 	background-color: yellow;
+ 	border-radius: 5px;
+ 	margin-top: 10px;
+ 	opacity: 0.8;
+ }
+
+ .step:hover{
+ 	opacity: 1;
+ }
+
+
 
  body { 
   background: url(/background10.jpg) no-repeat center center fixed; 
@@ -39,18 +61,28 @@ ul li {
 }
 
 #logoText{
-	color: #FF0D00;
+	color: white;
 	font-family: 'Life Savers';
 	font-size: 2.5vmin;
+	font-style: bold;
 	position: fixed; 
-	bottom: 0%;
-	left: 1%;
+	top: 4.7%;
+	left: 2.6%;
+	z-index: 100;
+}
+#logoBarImage{
+	width: 3em;
+	height: 3em;
+	position: fixed; 
+	top: 2%;
+	left: 2%;
 }
 
 #protocolEntry{
 	color: #FFFFFF;  
-	opacity: 0.8;
+	opacity: 0.9;
     border-right: 3px solid #ffffff;
+
 }
 
 #protocolEntry:hover {
@@ -71,6 +103,12 @@ ul li {
 	/*border: 0.7em solid yellow;*/
 }
 
+/*First page*/
+.sideBarImg{
+	width: 2em;
+	height: 2em;
+}
+
 .imgDiv{
 	height: 25em;
 	width: 25em;
@@ -81,13 +119,53 @@ ul li {
 }
 
 .startButton{
-	border: 2px solid gray;
-	background: none;
+	color: white;
+	border: 2px solid black;
+	background-color: #FF0D00;
+	font-family: 'Life Savers';
+
 }
 
 .startButton:hover{
 	border: 2px solid white;
 }
+
+.runButton{
+	color: white;
+	border: 2px solid black;
+	background-color: #0088cc;
+	font-family: 'Life Savers';
+
+}
+
+.runButton:hover{
+	border: 2px solid white;
+}
+/*Second page*/
+.centerDiv{
+	display: table;
+   width: 100%;
+}
+.runBeginDiv{
+	height: 27em;
+	width: 27em;
+	background-image: url(http://www.clipartbest.com/cliparts/MTL/5jo/MTL5jo5Ta.png);
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	display: table-cell;
+   text-align: center;
+   vertical-align: middle;
+	
+}
+#runName{
+	color: #0088cc;
+
+}
+span{
+	color:#FF0D00;
+}
+
 
 .protocolHeader{
 	font-size: 80px;
