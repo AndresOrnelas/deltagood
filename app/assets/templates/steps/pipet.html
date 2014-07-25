@@ -1,7 +1,8 @@
-<h1> Pipet </h1>
-<h2> Procedure: Protocol {{protocols.protocolName}} </h2>
-<h2> Step #{{counter+1}} </h2>
-<div class="box">{{protocols.inputs[counter].name}}</div>
-<input ng-model="model.pipetVolume" id = "incubatortime" type = "number" > 
-<select ng-model="model.selectedSolutions" ng-options="solution.name + ' ' + (solution.lot || solution.user_id) for solution in solutions"></select>
+<div class="container">
+	<div class = "col-xs-8 stepBox">
+		<h1 id="mechTitle" class="protocolName">{{protocols.inputs[counter].name}}</h1>
+		<h3 class="addSol"> Add  <input class="inputBox" ng-model="model.pipetVolume" id = "incubatortime" type = "number"> of 
+		<select class="inputBox" ng-model="model.selectedSolutions" ng-options="solution.name + ' ' + (solution.lot || solution.user_id) for solution in solutions"></select></h3>
+	</div>
+</div>
 
