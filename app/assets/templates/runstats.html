@@ -1,47 +1,49 @@
-<h1> Run Statistics </h1>
-<h2> Protocol {{protocols.name}}, Run {{run.id}} </h2>
+<h1>{{run.protocol}}, Run {{run.id}} </h1>
 <h3>{{runInfo.user}}</h3>
 <h3>{{run.created_at}}</h3>
-
-<div ng-repeat="step in run.items">
-        <div class="col-xs-12" ng-show="step.type == 'mechanical'" style="margin: 10px">
-          <h1> A </h1>
-        </div>
-
-        <div class="col-xs-12" ng-show="step.type == 'pipet'" style="margin: 10px">
-          <h1> B </h1>
-        </div>
-        <div class="col-xs-12" ng-show="step.type == 'prepare'" style="margin: 10px">
-          <h1> C </h1>
-        </div>
-        <div class="col-xs-12" ng-show="step.type == 'incubation'" style="margin: 10px">
-          <h1> D </h1>
-        </div>
-    </div>
-<div>
-	{{note}}
+<h3>{{run.updated_at}}</h3>
+<div ng-show="note.note != ''" class="box">
+    Notes: {{note.note}}
 </div>
-
 <div ng-repeat="step in steps">
-	{{step}}
+    <div class="container">
+
+   <div class="row" ng-show="step.type == 'prepare'">
+     <div class="col-xs-4">
+       <p>Step {{(steps.indexOf(step)+1)}}: {{step.name}}</p>
+     </div>
+     <div class="col-xs-4">
+     	<p> PLZ WORK </p>
+     </div>
+     <div class="col-xs-4">
+     	<p> PLZ WORK </p>
+     </div>
+   </div>
+
+   <div ng-show="step.type == 'pipet'">
+   	<div class="col-xs-4">
+       <p>Step {{(steps.indexOf(step)+1)}}: {{step.name}}</p>
+     </div>
+     <div class="col-xs-4">
+     	<p> {{step.volume}} </p>
+     </div>
+     <div class="col-xs-4">
+     	<p> {{step.solution}} {{step.usedSolution}} </p>
+     </div>
+   </div>
+
+   <div ng-show="step.type == 'incubation'">
+   	<div class="col-xs-4">
+       <p>Step {{(steps.indexOf(step)+1)}}: {{step.name}}</p>
+     </div>
+     <div class="col-xs-4">
+     	<p> {{step.time}} min </p>
+     </div>
+     <div class="col-xs-4">
+     	<p> {{step.temp}} degrees C </p>
+     </div>
+   </div>
+ </div>
 </div>
 
-<div ng-click= "view('/')"> Home </div>
-
-
-<!-- Link to this
-step array
-protocol id
-
-      t.integer :counter
-      t.text :inputs
-      //////////////////////////t.text :times
-      //////////////////////////t.text :changeList
-      t.belongs_to :user
-      t.belongs_to :protocol
-      t.integer :currentStep
-
-      t.timestamps
-  -->
-
-
+<button ng-click= "view('/')"> Home </button>
