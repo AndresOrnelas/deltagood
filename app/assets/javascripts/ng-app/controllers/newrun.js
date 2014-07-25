@@ -72,11 +72,15 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
     else if($scope.protocols.inputs[$scope.counter].type === 'prepare'){
         $scope.values[$scope.counter].usedSolution = $scope.model.selectedSolutions.id;
     }
+    else if($scope.protocols.inputs[$scope.counter].type === 'end'){
+        $scope.values[$scope.counter].note = $scope.model.note;
+        alert('set Values');
+    }
 
     $http.post('/runupdate.json', {values: $scope.values, id: sharedProperties.getRun().run1, currentStep: $scope.counter+1}); 
     $scope.protocols.inputs = $scope.values;
 
-		if($scope.counter !== $scope.numsteps-1){
+		if($scope.counter < $scope.numsteps-1){
 	    	$scope.slide = 'slide-left';
         // $location.url(data);
 
@@ -86,10 +90,20 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
         $scope.prepareEverything();
       }
 	   else{
-        $scope.percent = ($scope.counter/$scope.numsteps)*100;
-	      alert('Reached end of steps!');
-        // $http.post('/run.json', {params: {values: ["A"], protocol: $scope.protocols}}); 
-        $location.url('/' + $scope.protocols.protocolName)
+        if($scope.protocols.inputs[$scope.counter].type === 'end'){
+           alert("On to hist.");
+           $location.url('/' + $scope.protocols.name);
+          } else {
+            alert('Reached end of steps!');
+           // $http.post('/run.json', {params: {values: ["A"], protocol: $scope.protocols}});
+
+           $scope.percent = 100;
+           $scope.counter = sharedProperties.addCounter().position;
+           $scope.model.note = "";
+           // $location.url('/' + $scope.protocols.name) MOVED TO if end
+           $scope.end = {type: 'end', note: $scope.model.note};
+           $scope.protocols.inputs.push($scope.end);
+        }
 	    }
 
     }
