@@ -68,22 +68,23 @@ ul li {
 	font-size: 2.5vmin;
 	font-style: bold;
 	position: fixed; 
-	top: 4%;
-	left: 1.7%;
+	top: 4.7%;
+	left: 2.6%;
 	z-index: 100;
 }
 #logoBarImage{
 	width: 3em;
 	height: 3em;
 	position: fixed; 
-	top: 1%;
-	left: 1%;
+	top: 2%;
+	left: 2%;
 }
 
 #protocolEntry{
 	color: #FFFFFF;  
-	opacity: 0.8;
+	opacity: 0.9;
     border-right: 3px solid #ffffff;
+
 }
 
 #protocolEntry:hover {
@@ -102,6 +103,12 @@ ul li {
 	/*display: table-cell;
 	vertical-align: middle;*/
 	/*border: 0.7em solid yellow;*/
+}
+
+/*First page*/
+.sideBarImg{
+	width: 2em;
+	height: 2em;
 }
 
 .imgDiv{

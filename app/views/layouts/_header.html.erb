@@ -2,12 +2,14 @@
 <h1 id="logoText">LabTop</h1><img id="logoBarImage"src="http://www.clker.com/cliparts/5/d/4/4/12379163061121313240papapishu_Lab_icon_3.svg.med.png">
 
   <% if user_signed_in? %>
-             <li><%= link_to "Tests",    '/' %></li>
-             <p> </p> 
+             <li><%= link_to "Home",    '/' %>
+             <p><img class="sideBarImg" src="http://www.clker.com/cliparts/8/Z/a/R/X/5/lightbulb-white-hi.png"></p></li>
              <li><%= link_to "Profile", '/users/edit' %></li>
-             <p> </p> 
-             <li><%= link_to "Signout", destroy_user_session_path, :method => :delete %></li>
-             <p> </p> 
+             <p></p>
+             <p> <img class="sideBarImg" src="http://www.iconsdb.com/icons/preview/white/services-xxl.png"></p> 
+             <li><%= link_to "SignOut", destroy_user_session_path, :method => :delete %></li>
+             <p><img class="sideBarImg" src="http://www.navarrocollege.edu/cheer/images/arrow.gif">
+             </p></li> 
              <% else %>
               <li> <%= link_to "Sign up", new_user_registration_path %> </li>
               <li> <%= link_to "Sign in", new_user_session_path %> </li>
