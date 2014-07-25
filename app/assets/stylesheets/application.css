@@ -156,6 +156,14 @@ ul li {
  	/*background-opacity: .3;*/
  	background-color:rgba(0,0,0,0.17);
 }
+/*Pipet*/
+.addSol{
+	font-family: 'Life Savers';
+	font-weight:normal;
+	font-size: 30px;
+	margin-bottom: 35px;
+	color: black;
+}
 
 /*First page*/
 .sideBarImg{
