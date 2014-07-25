@@ -17,7 +17,7 @@
             </td>
         </tr>
         <tr class = "box1" ng-show = "protocols[run.protocol_id-1].name === locate.protocol1" ng-click="visit(run.id)" ng-repeat="run in runs">
-            <td > {{run.counter}} </td>
+            <td > {{run.counter+1}} </td>
             <td> {{users[run.user_id-1].name}} </td>
             <td> {{(run.currentStep/run.inputs.length)*100}}% </td>
             <td> {{run.updated_at | date}}
