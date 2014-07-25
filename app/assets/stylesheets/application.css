@@ -15,8 +15,29 @@
  *= require bootstrap
  */
 
- .stat{
- 	
+ .paperBack{
+ 	background-image: url('/stationary.png');
+ 	background-size: fill;
+ 	background-position: center;
+ 	background-color: gray;
+ }
+
+ .step{
+ 	position: relative;
+ 	border-style: solid;
+ 	border-color: orange;
+ 	background-color: yellow;
+ 	border-radius: 5px;
+ 	margin-top: 10px;
+ 	opacity: 0.8;
+ }
+
+ .step:hover{
+ 	opacity: 1;
+ }
+
+ .stepData{
+
  }
 
  body { 
