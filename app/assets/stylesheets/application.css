@@ -167,7 +167,11 @@ ul li {
 	margin-bottom: 35px;
 	color: black;
 }
-
+/*Prepare*/
+#prepareBox{
+	padding-top: 4%;
+	padding-bottom: 4%;
+}
 /*First page*/
 .sideBarImg{
 	width: 2em;

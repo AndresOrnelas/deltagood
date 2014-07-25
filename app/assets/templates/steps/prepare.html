@@ -1,5 +1,5 @@
 <div class="container">
-	<div class = "col-xs-8 stepBox">
+	<div id="prepareBox" class = "col-xs-8 stepBox">
 		<h3>{{protocols.inputs[counter].name}}</h3>
     <div ng-hide = "model.selectedSolutions == null">
         <select ng-model="model.selectedSolutions" ng-options="solution.name + ' ' + (solution.lot || solution.user_id) for solution in solutions">
@@ -10,14 +10,14 @@
     <div ng-show = "model.selectedSolutions == null">
         <select ng-model="model.selectedReagents1" ng-options="solution.name + ' ' + (solution.lot || solution.user_id) for solution in model.reagents1">
         </select>
-        {{model.proportion1 * model.quantityMadeSolution}}
+        <h1 class="addSol">Use <tab>{{model.proportion1 * model.quantityMadeSolution}} ml</h1><br>
         <select ng-model="model.selectedReagents2" ng-options="solution.name + ' ' + (solution.lot || solution.user_id) for solution in model.reagents2">
         </select>
-        {{model.proportion2 * model.quantityMadeSolution}}
-        <input ng-model="model.quantityMadeSolution" id = "incubatortime" type = "number" >
+        <h1 class="addSol">Use <tab>{{model.proportion2 * model.quantityMadeSolution}} ml</h1><br>
+        <p></p>
+        <input ng-model="model.quantityMadeSolution" id = "incubatortime" type = "number" ><br>
         <button ng-click="model.selectedSolutions = solutions[solutions.length-1]">Back</button>
         <button ng-click="createSolution()">Save</button>
     </div>
-    {{model.selectedSolutions}}
 </div>
 </div>
