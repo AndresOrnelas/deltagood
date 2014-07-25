@@ -2,6 +2,11 @@ myApp.controller('RunStatsCtrl', function ($routeParams, $scope, $location, $htt
       $scope.locate = sharedProperties.getRun();
     	$scope.slide = 'slide-left';
 
+      $http.get('/protocoltype.json', 
+        { params: {name: sharedProperties.getProtocol().protocol1}}).success(function(data){
+          $scope.protocols = data;
+        })
+
     	$http.get('/runtype.json', 
     		{ params: {id: $routeParams.run}}).success(function(data){
     			$scope.run = data;

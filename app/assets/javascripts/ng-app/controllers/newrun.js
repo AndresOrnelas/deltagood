@@ -1,6 +1,7 @@
 myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProperties) {
       
     //Initializing variables
+    
     $scope.model = {};
     $scope.slide = 'slide-left'
     $scope.counter = sharedProperties.getCounter().position;
@@ -8,20 +9,18 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
     $scope.imgcounter = 0;
     $scope.imagelength = 0;
     $scope.disable = "";
-        console.log("hahahahahahahahah")
 
     $scope.locate = sharedProperties.getProtocol();
     // Try to see what would happen if the first step is not mechanical
     if(sharedProperties.getHome().from == 1){
       $http.get('/protocoltype.json', { params: {name: $scope.locate.protocol1}}).success(function(data){
         $scope.protocols = data;
-        console.log("from home")
       });
     }
     else{
     $http.get('/runtype.json', { params: {id: sharedProperties.getRun().run1}}).success(function(data){
       $scope.protocols = data;
-      $scope.startVoiceRecognition();
+      // $scope.startVoiceRecognition();
       $scope.numsteps = $scope.protocols.inputs.length;
         $scope.values = $scope.protocols.inputs;
 
@@ -37,12 +36,15 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
   }
 
 	//Incubatation.html javascript
-    $scope.clock = function(time){
-		  document.getElementById("incubatortime").disabled = true;
-    	return $('.clock').FlipClock($scope.model.incubationTimeValue *60, {
-			 countdown: true
-		  });
-    }
+    // $scope.clock = function(time){
+		  // document.getElementById("incubatortime").disabled = true;
+    // 	return $('.clock').FlipClock($scope.model.incubationTimeValue *60, {
+			 // countdown: true
+		  // });
+    // }
+    $scope.clock = function(){
+      sharedProperties.setClock($scope.model.incubationTimeValue);
+    };
   // Mechanical.html javascript
     $scope.imgMove = function(){
     	if($scope.imgcounter != $scope.imagelength-1){
@@ -74,7 +76,6 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
     }
     else if($scope.protocols.inputs[$scope.counter].type === 'end'){
         $scope.values[$scope.counter].note = $scope.model.note;
-        alert('set Values');
     }
 
     $http.post('/runupdate.json', {values: $scope.values, id: sharedProperties.getRun().run1, currentStep: $scope.counter+1}); 
@@ -95,7 +96,6 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
            $location.url('/' + $scope.protocols.name);
           } else {
             alert('Reached end of steps!');
-           // $http.post('/run.json', {params: {values: ["A"], protocol: $scope.protocols}});
 
            $scope.percent = 100;
            $scope.counter = sharedProperties.addCounter().position;
@@ -168,16 +168,15 @@ if($scope.protocols.inputs[$scope.counter].type === 'mechanical'){
 $scope.startRun = function(data){
       sharedProperties.setCounter(0);
       sharedProperties.setHome(0);
-      $scope.startVoiceRecognition();
       $scope.slide = 'slide-left';
       $http.post('/run.json',{protocolid: $scope.protocols.id, protocolName: $scope.protocols.name, steps: $scope.protocols.steps});
      //saves the run into services to be accessed when i want to update runs
-      $http.get('/lastrun.json', {params: {id: $scope.protocols.id}}).success(function(data){
-          sharedProperties.setRun(data.id);
+      $http.get('/lastrun.json', {params: {id: $scope.protocols.id}}).success(function(data1){
+          sharedProperties.setRun(data1.id);
           console.log(sharedProperties.getRun().run1);
+          $location.url(data)
       });
-      if(sharedProperties.getRun().run1 != 1)
-        $location.url(data)
+      // if(sharedProperties.getRun().run1 != 1) THIS WAS
   }
 
     $scope.visit = function(data){
