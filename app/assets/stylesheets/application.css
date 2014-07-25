@@ -14,22 +14,41 @@
  *= require_self
  *= require bootstrap
  */
+ .clarify:hover{
+ 	background-color: rgba(240, 240, 240);
+ }
+
+ .clarify{
+ 	background-color: rgba(255, 255, 255, 0.4);
+ }
+
+ .center{
+ 	margin-right: auto;
+ 	margin-left: auto;
+ 	margin-top: 15px;
+ }
+
+ #statHolder{
+ 	width: 60%;
+ 	margin-right: auto;
+ 	margin-left: auto;
+ }
 
  .paperBack{
- 	background-image: url('/stationary.png');
- 	background-size: fill;
+ 	background-image: url('/stationery.png');
+ 	background-size: cover;
  	background-position: center;
- 	background-color: gray;
+ 	width: 60%;
+ 	margin-right: auto;
+ 	margin-left: auto;
  }
 
  .step{
  	position: relative;
- 	border-style: solid;
- 	border-color: orange;
- 	background-color: yellow;
  	border-radius: 5px;
- 	margin-top: 10px;
- 	opacity: 0.8;
+ 	opacity: 1;
+ 	font-family: 'Life Savers';
+ 	background-color: ;
  }
 
  .step:hover{
@@ -37,7 +56,8 @@
  }
 
  .stepData{
-
+ 	border-top-style: solid;
+ 	border-top-color: black;
  }
 
  body { 
