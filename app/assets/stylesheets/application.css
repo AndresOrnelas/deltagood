@@ -20,30 +20,67 @@
  }
 
  body { 
-  background: url(/background.jpg) no-repeat center center fixed; 
+  background: url(/background10.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+cursor: pointer;
+}
+
+ul li {
+	position: fixed;
+	top: 0%;
+	margin-top: 2em;
+	margin-bottom: em;
+}
+
+#logoText{
+	color: #FF0D00;
+	font-family: 'Life Savers';
+	font-size: 2.5vmin;
+	position: fixed; 
+	bottom: 0%;
+	left: 1%;
 }
 
 #protocolEntry{
 	color: #FFFFFF;  
 	opacity: 0.8;
-    border-right: 2px dotted #ffffff;
+    border-right: 3px solid #ffffff;
 }
 
 #protocolEntry:hover {
 	opacity: 1;
 }
 
-#protocolImage{
-	height: 200px;
-	width: 200px;
+.protocolImage{
+	margin: auto;
+	margin-top: 5.5em;
+	height: 14em;
+	width: 14em;
 	border-radius: 200px 200px 200px 200px;
--moz-border-radius: 200px 200px 200px 200px;
--webkit-border-radius: 200px 200px 200px 200px;
-border: 2px double #ffffff;
+	-moz-border-radius: 200px 200px 200px 200px;
+	-webkit-border-radius: 200px 200px 200px 200px;
+	border: solid yellow 2px;
+	/*display: table-cell;
+	vertical-align: middle;*/
+	/*border: 0.7em solid yellow;*/
+}
+
+.imgDiv{
+	height: 25em;
+	width: 25em;
+	background-image: url(http://www.freestockphotos.biz/pictures/16/16842/Illustration+of+a+sun.png);
+	background-size: contain;
+	background-position: center;
+	display: table;
 }
 
 .startButton{
@@ -56,11 +93,14 @@ border: 2px double #ffffff;
 }
 
 .protocolHeader{
-	font-family: 'Source Sans Pro', sans-serif;
 	font-size: 80px;
 	margin-bottom: 70px;
-	text-shadow: 3px 2px 0 #ddd,5px 4px 0 #bbb;
+	/*text-shadow: 3px 2px 0 #ddd,5px 4px 0 #bbb;*/
 	opacity: 0.8;
+	font-family: 'Slackey';
+	font-weight: 700;
+	letter-spacing: 0.05em;
+	color: #FF0D00;
 }
 .protocolHeader:hover{
 	opacity: 1;
@@ -68,7 +108,7 @@ border: 2px double #ffffff;
 }
 .protocolName{
 
-	font-family: 'Source Sans Pro', sans-serif;
+	font-family: 'Life Savers';
 	font-weight:normal;
 	font-size: 40px;
 	margin-bottom: 35px;
@@ -335,17 +375,30 @@ border: 2px double #ffffff;
 
  #sidebar {
  	position: fixed;
- 	background-color: black;
  	left: 0;
  	top: 0;
+ 	background-color: black;
  	z-index: 1000; 
  	height: 100%;
- 	width: 10%;
+ 	width: 8.2%;
  	font-size: 3vmin;
-	padding: 10px;
-	padding-top: 20%;
+	padding-top: 10%;
 	text-align: right;
 	float: left;
+	opacity: 0.8;
+	font-family: 'Slackey';
+	border-radius: 0px 50px 50px 0px;
+    -moz-border-radius: 0px 50px 50px 0px;
+    -webkit-border-radius: 0px 50px 50px 0px;
+    text-align: center;
+    -webkit-transition: all .3s ease-in-out;
+   -moz-transition: all .3s ease-in-out;
+   -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+ }
+ #sidebar:hover{
+ 	opacity: 0.86;
+ 	width: 9.5%;
  }
 #right-column{
 	right: 0px;

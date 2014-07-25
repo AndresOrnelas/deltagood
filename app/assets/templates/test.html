@@ -8,11 +8,12 @@ setup to go with ng-repeat -->
 
 		          <div class="col-xs-12 text-center pagination-centered" style="margin: 10px">
                 <h1 class="protocolName"> Fun Activity {{protocol.name}} </h1>
-                <img id="protocolImage" src= "http://ffden-2.phys.uaf.edu/212_spring2011.web.dir/Penne_Spuler/baking%20soda%20volcano%20with%20dinos.jpg"> 
+                <div class="imgDiv"><img class="protocolImage" src= "http://www.computerclipart.com/computer_clipart_images/erupting_volcano_cartoon_0515-1005-1017-5626_SMU.jpg"></div>
+                <!-- <img src="http://www.freestockphotos.biz/pictures/16/16842/Illustration+of+a+sun.png"> -->
               </div>
 
               <div class="col-xs-12 text-center pagination-centered" style="margin: 10px" >
-                <button  ng-click= "visit('/' +'newrun' + '/'+ protocol.name, protocol.name)" class="btn-large startButton"> Start Fun </button><br>
+                <button  ng-click= "visit('/' +'newrun' + '/'+ protocol.name, protocol.name)" class="btn-large startButton"> Start the Fun </button><br>
               </div>
               <br>
               

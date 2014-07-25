@@ -1,10 +1,14 @@
 <ul class="nav nav-pills nav-stacked">
   <% if user_signed_in? %>
              <li><%= link_to "Tests",    '/' %></li>
+             <p> </p> 
              <li><%= link_to "Profile", '/users/edit' %></li>
+             <p> </p> 
              <li><%= link_to "Signout", destroy_user_session_path, :method => :delete %></li>
+             <p> </p> 
              <% else %>
               <li> <%= link_to "Sign up", new_user_registration_path %> </li>
               <li> <%= link_to "Sign in", new_user_session_path %> </li>
               <% end %>
 </ul>
+<h1 id="logoText">LabTop</h1>
