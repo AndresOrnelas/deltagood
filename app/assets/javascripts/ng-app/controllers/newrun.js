@@ -43,7 +43,11 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
 		  // });
     // }
     $scope.clock = function(){
-      sharedProperties.setClock($scope.model.incubationTimeValue);
+      // sharedProperties.setClock($scope.model.incubationTimeValue);
+      document.getElementById("incubatortime").disabled = true;
+                return $('.clock').FlipClock($scope.model.incubationTimeValue *60, {
+                    countdown: true
+                });
     };
   // Mechanical.html javascript
     $scope.imgMove = function(){
