@@ -14,7 +14,12 @@
  *= require_self
  *= require bootstrap
  */
-
+#funfont {
+	font-family: 'Slackey';
+	color: #FFFFFF;
+	margin: 1em;
+	font-size: 5em;
+}
  .paperBack{
  	background-image: url('/stationary.png');
  	background-size: fill;
@@ -223,15 +228,19 @@ span{
  }
 
  .box1:hover{
- 	border-style: double;
- 	border-color: green;
+ 	border-style: solid;
+ 	border-color: #FFFF00;
  }
 
+#overflowScroll {
+	overflow: scroll; 
+	height: 40em;
+}
 .tbl {
 	margin:0px;padding:0px;
 	width:100%;
 	box-shadow: 10px 10px 5px #888888;
-	border:1px solid #000000;
+	border:1px solid #000000; 
 	
 	-moz-border-radius-bottomleft:5px;
 	-webkit-border-bottom-left-radius:5px;
@@ -275,8 +284,8 @@ span{
 }.tbl tr:hover td{
 	
 }
-.tbl tr:nth-child(odd){ background-color:#ffaa56; }
-.tbl tr:nth-child(even)    { background-color:#ffffff; }.tbl td{
+.tbl tr:nth-child(odd){ background-color:#85E085; height: 5em; color: #ffffff;}
+.tbl tr:nth-child(even)    { background-color:#C2F0C2; height: 5em;}.tbl td{
 	vertical-align:middle;
 	
 	
@@ -284,9 +293,9 @@ span{
 	border-width:0px 1px 1px 0px;
 	text-align:left;
 	padding:12px;
-	font-size:10px;
-	font-family:Arial;
-	font-weight:normal;
+	font-size:2em;
+	font-family: 'Life Savers';
+	font-weight:bold;
 	color:#000000;
 }.tbl tr:last-child td{
 	border-width:0px 1px 0px 0px;
@@ -295,27 +304,22 @@ span{
 }.tbl tr:last-child td:last-child{
 	border-width:0px 0px 0px 0px;
 }
-.tbl tr:first-child td{
-		background:-o-linear-gradient(bottom, #ff7f00 5%, #bf5f00 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ff7f00), color-stop(1, #bf5f00) );
-	background:-moz-linear-gradient( center top, #ff7f00 5%, #bf5f00 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff7f00", endColorstr="#bf5f00");	background: -o-linear-gradient(top,#ff7f00,bf5f00);
 
-	background-color:#ff7f00;
+
+.tbl tr:first-child td{
+		
+
+	background-color:#29A329;
 	border:0px solid #000000;
 	text-align:center;
 	border-width:0px 0px 1px 1px;
-	font-size:14px;
-	font-family:Arial;
+	font-size:2.5em;
+	font-family:'Life Savers';
 	font-weight:bold;
 	color:#ffffff;
-}
-.tbl tr:first-child:hover td{
-	background:-o-linear-gradient(bottom, #ff7f00 5%, #bf5f00 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ff7f00), color-stop(1, #bf5f00) );
-	background:-moz-linear-gradient( center top, #ff7f00 5%, #bf5f00 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff7f00", endColorstr="#bf5f00");	background: -o-linear-gradient(top,#ff7f00,bf5f00);
 
-	background-color:#ff7f00;
 }
+
 .tbl tr:first-child td:first-child{
 	border-width:0px 0px 1px 0px;
 }

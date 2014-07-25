@@ -1,25 +1,27 @@
-<h1> Runs </h1>
-<div class="table-bordered table-striped">
-    <table >
+<h1 id="funfont">All Trials of this Experiment </h1>
+<div id="overflowScroll">
+<div class="tbl">
+    <table>
         <tr>
             <td>
                 Runs
             </td>
             <td >
-                Name
+                Person
             </td>
             <td>
-                Percent Completed
+                % Complete
             </td>
             <td>
             	Last Update
             </td>
         </tr>
-        <tr class = "box1" ng-show = "protocols[run.protocol_id-1].name === locate.protocol1" ng-click="visit(run.id)" ng-repeat="run in runs">
+        <tr class = "box1" ng-show = "protocols[run.protocol_id-1].name === locate.protocol1" ng-click="visit('/'+ locate.protocol1 +'/'+ run.id, run.id)" ng-repeat="run in runs">
         	<td > {{run.counter}} </td>
         	<td> {{users[run.user_id-1].name}} </td>
-        	<td> {{Math.round(run.currentStep/run.inputs.length)*100}}% </td>
-        	<td> {{run.updated_at | date}}
+        	<td> 0% </td>
+        	<td> {{run.updated_at | date}}</td>
         </tr>
     </table>
+</div>
 </div>
