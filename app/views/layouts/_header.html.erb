@@ -1,4 +1,6 @@
 <ul class="nav nav-pills nav-stacked">
+<h1 id="logoText">LabTop</h1><img id="logoBarImage"src="http://www.clker.com/cliparts/5/d/4/4/12379163061121313240papapishu_Lab_icon_3.svg.med.png">
+
   <% if user_signed_in? %>
              <li><%= link_to "Tests",    '/' %></li>
              <p> </p> 
@@ -11,4 +13,3 @@
               <li> <%= link_to "Sign in", new_user_session_path %> </li>
               <% end %>
 </ul>
-<h1 id="logoText">LabTop</h1>

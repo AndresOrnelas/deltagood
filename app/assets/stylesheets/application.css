@@ -63,11 +63,20 @@ ul li {
 }
 
 #logoText{
-	color: #FF0D00;
+	color: white;
 	font-family: 'Life Savers';
 	font-size: 2.5vmin;
+	font-style: bold;
 	position: fixed; 
-	bottom: 0%;
+	top: 4%;
+	left: 1.7%;
+	z-index: 100;
+}
+#logoBarImage{
+	width: 3em;
+	height: 3em;
+	position: fixed; 
+	top: 1%;
 	left: 1%;
 }
 
@@ -106,12 +115,27 @@ ul li {
 
 .startButton{
 	border: 2px solid gray;
-	background: none;
+	background-color: #FF0D00;
+	font-family: 'Life Savers';
+
 }
 
 .startButton:hover{
 	border: 2px solid white;
 }
+
+.runButton{
+	border: 2px solid gray;
+	background-color: #0088cc;
+	font-family: 'Life Savers';
+
+}
+
+.runButton:hover{
+	border: 2px solid white;
+}
+
+
 
 .protocolHeader{
 	font-size: 80px;
