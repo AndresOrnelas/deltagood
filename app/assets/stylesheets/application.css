@@ -44,9 +44,11 @@
 
  .paperBack{
  	background-image: url('/stationery.png');
- 	background-size: cover;
- 	background-position: center;
- 	width: 60%;
+ 	background-size: contain;
+ 	/*background-position: center;*/
+	background-repeat: no-repeat;
+
+ 	width: 900px;
  	margin-right: auto;
  	margin-left: auto;
  }

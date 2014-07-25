@@ -87,13 +87,16 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
 
 	      $scope.counter = sharedProperties.addCounter().position;
         $scope.percent = (($scope.counter+1)/$scope.numsteps)*100;
-
         $scope.prepareEverything();
+        $scope.imagelinks = $scope.protocols.inputs[$scope.counter].images;
+        $scope.imgcounter = 0;
+        $scope.imglink = $scope.imagelinks[$scope.imgcounter];
+
       }
 	   else{
         if($scope.protocols.inputs[$scope.counter].type === 'end'){
-           alert("On to hist.");
-           $location.url('/' + $scope.protocols.name);
+           // alert("On to hist.");
+           $location.url('/' + $scope.protocols.protocolName + '/' + $scope.protocols.id);
           } else {
             alert('Reached end of steps!');
 
