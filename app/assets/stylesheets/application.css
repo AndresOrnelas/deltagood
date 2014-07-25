@@ -220,6 +220,8 @@ span{
  	text-align: center;
  	margin: 0 auto;
  	margin-top: 10px;
+ 	background-color: #FFFFFF;
+ 	background-opacity: .7;
  }
 
  .box1:hover{
