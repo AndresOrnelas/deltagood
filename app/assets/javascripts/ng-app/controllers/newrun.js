@@ -37,12 +37,15 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
   }
 
 	//Incubatation.html javascript
-    $scope.clock = function(time){
-		  document.getElementById("incubatortime").disabled = true;
-    	return $('.clock').FlipClock($scope.model.incubationTimeValue *60, {
-			 countdown: true
-		  });
-    }
+    // $scope.clock = function(time){
+		  // document.getElementById("incubatortime").disabled = true;
+    // 	return $('.clock').FlipClock($scope.model.incubationTimeValue *60, {
+			 // countdown: true
+		  // });
+    // }
+    $scope.clock = function(){
+      sharedProperties.setClock($scope.model.incubationTimeValue);
+    };
   // Mechanical.html javascript
     $scope.imgMove = function(){
     	if($scope.imgcounter != $scope.imagelength-1){

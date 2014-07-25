@@ -9,6 +9,7 @@ myApp.service('sharedProperties', function () {
         var run = {run1: 1};
         var counter = {position: 0};
         var fromHome = {from: 0};
+        var clocktime = {minutes: 0};
 
         return {
             getCounter: function(){
@@ -43,6 +44,15 @@ myApp.service('sharedProperties', function () {
             setHome: function(data){
                 fromHome.from = data;
                 return fromHome;
+            }, 
+            getClock: function(){
+                return clocktime;
+            },
+            setClock: function(time){
+                document.getElementById("incubatortime").disabled = true;
+                return $('.clock').FlipClock(time *60, {
+                    countdown: true
+                });
             }
         };
     });
