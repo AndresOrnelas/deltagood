@@ -106,7 +106,10 @@ ul li {
 }
 
 /*Run css*/
-
+.inputBox{
+	margin-right: 1em;
+	margin-left: 1em;
+}
 .stepBox{
 	padding-top: 10%;
 	padding-bottom: 10%;
