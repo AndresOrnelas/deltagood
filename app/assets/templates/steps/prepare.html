@@ -3,16 +3,16 @@
 		<h3>{{protocols.inputs[counter].name}}</h3>
     <div ng-hide = "model.selectedSolutions == null">
         <h1 id="addSol"class="addSol">Time for vinegar! Use an existing dilution of vinegar or prepare your own.</h1>
-        <select ng-model="model.selectedSolutions" ng-options="solution.name + ' ' + (solution.lot || solution.user_id) for solution in solutions">
+        <select ng-model="model.selectedSolutions" ng-options="solution.name + ' ' + (solution.lot || solution.UserName) for solution in solutions">
         <option value = ""> Create solution </option>
         </select>
     </div>
 
     <div ng-show = "model.selectedSolutions == null">
-        <select ng-model="model.selectedReagents1" ng-options="solution.name + ' ' + (solution.lot || solution.user_id) for solution in model.reagents1">
+        <select ng-model="model.selectedReagents1" ng-options="solution.name + ' ' + (solution.lot || solution.UserName) for solution in model.reagents1">
         </select>
         <h1 class="addSol"><tab>{{model.proportion1 * model.quantityMadeSolution}} ml</h1>
-        <select ng-model="model.selectedReagents2" ng-options="solution.name + ' ' + (solution.lot || solution.user_id) for solution in model.reagents2">
+        <select ng-model="model.selectedReagents2" ng-options="solution.name + ' ' + (solution.lot || solution.UserName) for solution in model.reagents2">
         </select>
         <h1 id="prepareSol"class="addSol">Use <tab>{{model.proportion2 * model.quantityMadeSolution}} ml</h1><br>
         <h1 class="addSol">Prepare <input class="inputBox" ng-model="model.quantityMadeSolution" id = "incubatortime" type = "number" > solutions</h1>
