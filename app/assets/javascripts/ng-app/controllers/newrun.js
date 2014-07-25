@@ -21,7 +21,7 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
     else{
     $http.get('/runtype.json', { params: {id: sharedProperties.getRun().run1}}).success(function(data){
       $scope.protocols = data;
-      $scope.startVoiceRecognition();
+      // $scope.startVoiceRecognition();
       $scope.numsteps = $scope.protocols.inputs.length;
         $scope.values = $scope.protocols.inputs;
 
