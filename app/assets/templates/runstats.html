@@ -1,4 +1,5 @@
 <div class="paperBack">
+	<center>
 	<div id="statHolder">
 
 	<div class="clarify step row">
@@ -6,7 +7,7 @@
 	    <div class="col-xs-6">
 	       <h1>{{run.protocolName}}, Run {{run.id}} </h1>
 	     </div>
-	     <div class="col-xs-6">
+	     <div id="statDate" class="col-xs-6">
 	       <p>Started:  {{run.created_at | date:'medium'}}</p>
 	     </div>
 	</div>
@@ -15,7 +16,7 @@
 	    <div class="col-xs-6">
 	       <h3>By: {{run.user}}</h3>
 	     </div>
-	     <div class="col-xs-6">
+	     <div id="statDate" class="col-xs-6">
 	       <p>Finished: {{run.updated_at | date:'medium'}}</p>
 	     </div>
 	</div>
@@ -67,5 +68,10 @@
 
 	</div>
 </div>
+
+<div class="center">
+<button class = "btn-large startButton" ng-click="visit('/')">Home</button>	
 </div>
-	
+
+</center>
+</div>

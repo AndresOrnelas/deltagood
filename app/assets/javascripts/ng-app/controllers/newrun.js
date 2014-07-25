@@ -98,7 +98,7 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
            // alert("On to hist.");
            $location.url('/' + $scope.protocols.protocolName + '/' + $scope.protocols.id);
           } else {
-            alert('Reached end of steps!');
+            // alert('Reached end of steps!');
 
            $scope.percent = 100;
            $scope.counter = sharedProperties.addCounter().position;
