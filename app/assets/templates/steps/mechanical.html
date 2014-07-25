@@ -1,11 +1,13 @@
 <div class="container">
-	<h3>Protocol {{protocols.protocolName}},  Step #{{currentStep}} </h3>
-	<h1>{{protocols.inputs[counter].name}}<h1>
-	<div class = "mechanicalimgbox"> 
-    <div ng-class= "slide" >
-	 	 <img style="width: 200px; height: 200px;"src="{{imglink}}"> <br>
-	  	<button ng-click = "imgBack()" class="btn btn-small">Back</button>
-	  	<button ng-click= "imgMove()" class="btn btn-small"> Fwrd </button>
-  	</div>		
+	<div id="stepBoxMech" class = "col-xs-8 stepBox"> 
+		<div id="mechInstructions">
+		<h1 id="mechTitle" class="protocolName">{{protocols.inputs[counter].name}}<h1>
+		</div>
+    	<div id="mechImageDiv" ng-class= "slide" >
+	 	  <img class="mechImg" src="{{imglink}}"><br>
+	 	  <p></p>
+	  	  <button class = "btn-large runButton" ng-click = "imgBack()" class="btn btn-small">Before</button>
+	  	  <button class = "btn-large startButton" ng-click= "imgMove()" class="btn btn-small">After</button>
+  	   </div>		
   </div>
 </div>

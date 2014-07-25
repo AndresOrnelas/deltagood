@@ -1,6 +1,7 @@
 myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProperties) {
       
     //Initializing variables
+    
     $scope.model = {};
     $scope.slide = 'slide-left'
     $scope.counter = sharedProperties.getCounter().position;
@@ -8,14 +9,12 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
     $scope.imgcounter = 0;
     $scope.imagelength = 0;
     $scope.disable = "";
-        console.log("hahahahahahahahah")
 
     $scope.locate = sharedProperties.getProtocol();
     // Try to see what would happen if the first step is not mechanical
     if(sharedProperties.getHome().from == 1){
       $http.get('/protocoltype.json', { params: {name: $scope.locate.protocol1}}).success(function(data){
         $scope.protocols = data;
-        console.log("from home")
       });
     }
     else{
@@ -77,7 +76,6 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
     }
     else if($scope.protocols.inputs[$scope.counter].type === 'end'){
         $scope.values[$scope.counter].note = $scope.model.note;
-        alert('set Values');
     }
 
     $http.post('/runupdate.json', {values: $scope.values, id: sharedProperties.getRun().run1, currentStep: $scope.counter+1}); 
@@ -98,7 +96,6 @@ myApp.controller('NewRunCtrl', function ($scope, $location,  $http, sharedProper
            $location.url('/' + $scope.protocols.name);
           } else {
             alert('Reached end of steps!');
-           // $http.post('/run.json', {params: {values: ["A"], protocol: $scope.protocols}});
 
            $scope.percent = 100;
            $scope.counter = sharedProperties.addCounter().position;
